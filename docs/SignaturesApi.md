@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="createChannel"></a>
 # **createChannel**
-> InlineResponse201 createChannel(organizationId, dstId)
+> InlineResponse2014 createChannel(organizationId, dstId)
 
 Create a channel
 
@@ -44,7 +44,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id dstId = new Id(); // Id | The **dst-id** is the uuid code that identifies a digital signature transaction. It is used as a path parameter to filter the requested operation to the specified **dst** 
     try {
-      InlineResponse201 result = apiInstance.createChannel(organizationId, dstId);
+      InlineResponse2014 result = apiInstance.createChannel(organizationId, dstId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignaturesApi#createChannel");
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**InlineResponse2014**](InlineResponse2014.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 <a name="declineDST"></a>
 # **declineDST**
-> InlineResponse2013 declineDST(organizationId, signatureId, inlineObject2)
+> InlineResponse2013 declineDST(organizationId, signatureId, inlineObject5)
 
 Decline a Digital Signature Transaction
 
@@ -117,9 +117,9 @@ public class Example {
     SignaturesApi apiInstance = new SignaturesApi(defaultClient);
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id signatureId = new Id(); // Id | The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction 
-    InlineObject2 inlineObject2 = new InlineObject2(); // InlineObject2 | 
+    InlineObject5 inlineObject5 = new InlineObject5(); // InlineObject5 | 
     try {
-      InlineResponse2013 result = apiInstance.declineDST(organizationId, signatureId, inlineObject2);
+      InlineResponse2013 result = apiInstance.declineDST(organizationId, signatureId, inlineObject5);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignaturesApi#declineDST");
@@ -138,7 +138,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
  **signatureId** | [**Id**](.md)| The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction  | [default to null]
- **inlineObject2** | [**InlineObject2**](InlineObject2.md)|  |
+ **inlineObject5** | [**InlineObject5**](InlineObject5.md)|  |
 
 ### Return type
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 <a name="performDST"></a>
 # **performDST**
-> InlineResponse2008 performDST(organizationId, signatureId, automaticSignature)
+> InlineResponse20011 performDST(organizationId, signatureId, automaticSignature)
 
 Sign a DST with an automatic signer
 
@@ -197,7 +197,7 @@ public class Example {
     Id signatureId = new Id(); // Id | The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction 
     AutomaticSignature automaticSignature = new AutomaticSignature(); // AutomaticSignature | Automatic Signature description
     try {
-      InlineResponse2008 result = apiInstance.performDST(organizationId, signatureId, automaticSignature);
+      InlineResponse20011 result = apiInstance.performDST(organizationId, signatureId, automaticSignature);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignaturesApi#performDST");
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 <a name="performSignature"></a>
 # **performSignature**
-> InlineResponse2009 performSignature(organizationId, signatureId, identityId, inlineObject3)
+> InlineResponse20012 performSignature(organizationId, signatureId, identityId, inlineObject3)
 
 Perform a Signature
 
@@ -275,7 +275,7 @@ public class Example {
     Id identityId = new Id(); // Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
     InlineObject3 inlineObject3 = new InlineObject3(); // InlineObject3 | 
     try {
-      InlineResponse2009 result = apiInstance.performSignature(organizationId, signatureId, identityId, inlineObject3);
+      InlineResponse20012 result = apiInstance.performSignature(organizationId, signatureId, identityId, inlineObject3);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignaturesApi#performSignature");
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20012**](InlineResponse20012.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 <a name="performSignatureWithSession"></a>
 # **performSignatureWithSession**
-> InlineResponse20010 performSignatureWithSession(organizationId, signatureId, inlineObject4)
+> InlineResponse20013 performSignatureWithSession(organizationId, signatureId, inlineObject4)
 
 Perform a Signature with session
 
@@ -353,7 +353,7 @@ public class Example {
     Id signatureId = new Id(); // Id | The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction 
     InlineObject4 inlineObject4 = new InlineObject4(); // InlineObject4 | 
     try {
-      InlineResponse20010 result = apiInstance.performSignatureWithSession(organizationId, signatureId, inlineObject4);
+      InlineResponse20013 result = apiInstance.performSignatureWithSession(organizationId, signatureId, inlineObject4);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignaturesApi#performSignatureWithSession");
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 

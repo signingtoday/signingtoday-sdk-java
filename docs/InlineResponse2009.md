@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**SignatureImplementationResponse**](SignatureImplementationResponse.md) |  |  [optional]
-**meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**meta** | [**InlineResponse2009Meta**](InlineResponse2009Meta.md) |  |  [optional]
+**data** | **String** |  |  [optional]
 
 
 

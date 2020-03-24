@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Organization**](Organization.md) |  |  [optional]
 **meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**data** | [**Organization**](Organization.md) |  |  [optional]
 
 
 

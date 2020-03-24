@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**channelPub** | **String** | The channel pub |  [optional]
 **channelSub** | **String** | The channel sub |  [optional]
+**channelPub** | **String** | The channel pub |  [optional]
 
 
 

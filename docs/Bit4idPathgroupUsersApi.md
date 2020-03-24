@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="createUser"></a>
 # **createUser**
-> InlineResponse2015 createUser(organizationId, createUser)
+> InlineResponse201 createUser(organizationId, createUser)
 
 Create a user of the organization
 
@@ -43,7 +43,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     CreateUser createUser = new CreateUser(); // CreateUser | The new user object to create
     try {
-      InlineResponse2015 result = apiInstance.createUser(organizationId, createUser);
+      InlineResponse201 result = apiInstance.createUser(organizationId, createUser);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling Bit4idPathgroupUsersApi#createUser");
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**InlineResponse201**](InlineResponse201.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 <a name="getUser"></a>
 # **getUser**
-> InlineResponse2015 getUser(organizationId, userId)
+> InlineResponse201 getUser(organizationId, userId)
 
 Get information about an user
 
@@ -118,7 +118,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
     try {
-      InlineResponse2015 result = apiInstance.getUser(organizationId, userId);
+      InlineResponse201 result = apiInstance.getUser(organizationId, userId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling Bit4idPathgroupUsersApi#getUser");
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**InlineResponse201**](InlineResponse201.md)
 
 ### Authorization
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 <a name="listUsers"></a>
 # **listUsers**
-> InlineResponse20012 listUsers(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count)
+> InlineResponse2001 listUsers(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, whereAutomatic, whereRao, page, count, whereOrder)
 
 Enumerate the users of an organization
 
@@ -194,10 +194,13 @@ public class Example {
     String whereEmail = test@mail.com; // String | Returns the users that have the specified email
     String whereLastName = Doe; // String | Returns the users that have the specified last name
     String whereFirstName = John; // String | Returns the users that have the specified first name
+    Boolean whereAutomatic = false; // Boolean | If set up to **true** returns automatic users only, otherwise returns non automatic users only
+    Boolean whereRao = false; // Boolean | If set up to **true** returns rao users only, otherwise returns non rao users only
     Integer page = 1; // Integer | Restricts the search to the chosen page
     Integer count = 100; // Integer | Sets the number of users per page to display
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse20012 result = apiInstance.listUsers(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count);
+      InlineResponse2001 result = apiInstance.listUsers(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, whereAutomatic, whereRao, page, count, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling Bit4idPathgroupUsersApi#listUsers");
@@ -219,12 +222,15 @@ Name | Type | Description  | Notes
  **whereEmail** | **String**| Returns the users that have the specified email | [optional]
  **whereLastName** | **String**| Returns the users that have the specified last name | [optional]
  **whereFirstName** | **String**| Returns the users that have the specified first name | [optional]
+ **whereAutomatic** | **Boolean**| If set up to **true** returns automatic users only, otherwise returns non automatic users only | [optional]
+ **whereRao** | **Boolean**| If set up to **true** returns rao users only, otherwise returns non rao users only | [optional]
  **page** | **Integer**| Restricts the search to the chosen page | [optional]
  **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -245,7 +251,7 @@ Name | Type | Description  | Notes
 
 <a name="updateUser"></a>
 # **updateUser**
-> InlineResponse2015 updateUser(organizationId, userId, updateUser)
+> InlineResponse201 updateUser(organizationId, userId, updateUser)
 
 Edit one or more user properties
 
@@ -277,7 +283,7 @@ public class Example {
     Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
     UpdateUser updateUser = new UpdateUser(); // UpdateUser | User properties to be edited
     try {
-      InlineResponse2015 result = apiInstance.updateUser(organizationId, userId, updateUser);
+      InlineResponse201 result = apiInstance.updateUser(organizationId, userId, updateUser);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling Bit4idPathgroupUsersApi#updateUser");
@@ -300,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**InlineResponse201**](InlineResponse201.md)
 
 ### Authorization
 

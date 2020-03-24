@@ -16,12 +16,13 @@ Method | HTTP request | Description
 [**listIdentities**](IdentitiesApi.md#listIdentities) | **GET** /{organization-id}/identities | Enumerate the identities of an organization
 [**listUserEnrollments**](IdentitiesApi.md#listUserEnrollments) | **GET** /{organization-id}/users/{user-id}/identity-requests | List the enrollments of an user
 [**listUserIdentities**](IdentitiesApi.md#listUserIdentities) | **GET** /{organization-id}/users/{user-id}/wallet | Enumerate the identities of an user
+[**renewIdentity**](IdentitiesApi.md#renewIdentity) | **POST** /{organization-id}/identity-requests/{enrollment-id}/renew | Renew an Identity
 [**requestEnrollment**](IdentitiesApi.md#requestEnrollment) | **POST** /{organization-id}/enroll | Submit an enrollment request
 
 
 <a name="associateAppearance"></a>
 # **associateAppearance**
-> InlineResponse2004 associateAppearance(organizationId, identityId, inlineObject)
+> InlineResponse2011 associateAppearance(organizationId, identityId, inlineObject)
 
 Associate an appearance to an identity
 
@@ -53,7 +54,7 @@ public class Example {
     Id identityId = new Id(); // Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
     InlineObject inlineObject = new InlineObject(); // InlineObject | 
     try {
-      InlineResponse2004 result = apiInstance.associateAppearance(organizationId, identityId, inlineObject);
+      InlineResponse2011 result = apiInstance.associateAppearance(organizationId, identityId, inlineObject);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#associateAppearance");
@@ -76,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2011**](InlineResponse2011.md)
 
 ### Authorization
 
@@ -98,7 +99,7 @@ Name | Type | Description  | Notes
 
 <a name="associateIdentity"></a>
 # **associateIdentity**
-> InlineResponse2004 associateIdentity(organizationId, userId, identityAssociation)
+> InlineResponse2011 associateIdentity(organizationId, userId, identityAssociation)
 
 Associate to an user an already existing identity
 
@@ -130,7 +131,7 @@ public class Example {
     Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
     IdentityAssociation identityAssociation = new IdentityAssociation(); // IdentityAssociation | Provider data to associate
     try {
-      InlineResponse2004 result = apiInstance.associateIdentity(organizationId, userId, identityAssociation);
+      InlineResponse2011 result = apiInstance.associateIdentity(organizationId, userId, identityAssociation);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#associateIdentity");
@@ -153,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2011**](InlineResponse2011.md)
 
 ### Authorization
 
@@ -247,7 +248,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteAppearance"></a>
 # **deleteAppearance**
-> InlineResponse2004 deleteAppearance(organizationId, identityId)
+> InlineResponse2011 deleteAppearance(organizationId, identityId)
 
 Delete the appearance of an identity
 
@@ -278,7 +279,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id identityId = new Id(); // Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
     try {
-      InlineResponse2004 result = apiInstance.deleteAppearance(organizationId, identityId);
+      InlineResponse2011 result = apiInstance.deleteAppearance(organizationId, identityId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#deleteAppearance");
@@ -300,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2011**](InlineResponse2011.md)
 
 ### Authorization
 
@@ -395,7 +396,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteIdentity"></a>
 # **deleteIdentity**
-> InlineResponse2003 deleteIdentity(organizationId, identityId)
+> InlineResponse2006 deleteIdentity(organizationId, identityId)
 
 Delete an identity
 
@@ -426,7 +427,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id identityId = new Id(); // Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
     try {
-      InlineResponse2003 result = apiInstance.deleteIdentity(organizationId, identityId);
+      InlineResponse2006 result = apiInstance.deleteIdentity(organizationId, identityId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#deleteIdentity");
@@ -448,7 +449,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**InlineResponse2006**](InlineResponse2006.md)
 
 ### Authorization
 
@@ -469,7 +470,7 @@ Name | Type | Description  | Notes
 
 <a name="getEnrollmentRequest"></a>
 # **getEnrollmentRequest**
-> InlineResponse2011 getEnrollmentRequest(organizationId, enrollmentId)
+> InlineResponse2007 getEnrollmentRequest(organizationId, enrollmentId)
 
 Get information about an enrollment request
 
@@ -500,7 +501,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id enrollmentId = new Id(); // Id | The **enrollment-id** is the uuid code that identifies a specific enrollment request 
     try {
-      InlineResponse2011 result = apiInstance.getEnrollmentRequest(organizationId, enrollmentId);
+      InlineResponse2007 result = apiInstance.getEnrollmentRequest(organizationId, enrollmentId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#getEnrollmentRequest");
@@ -522,7 +523,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2011**](InlineResponse2011.md)
+[**InlineResponse2007**](InlineResponse2007.md)
 
 ### Authorization
 
@@ -543,7 +544,7 @@ Name | Type | Description  | Notes
 
 <a name="getIdentity"></a>
 # **getIdentity**
-> InlineResponse2002 getIdentity(organizationId, identityId)
+> InlineResponse2005 getIdentity(organizationId, identityId, whereOrder)
 
 Get information about an identity
 
@@ -573,8 +574,9 @@ public class Example {
     IdentitiesApi apiInstance = new IdentitiesApi(defaultClient);
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id identityId = new Id(); // Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse2002 result = apiInstance.getIdentity(organizationId, identityId);
+      InlineResponse2005 result = apiInstance.getIdentity(organizationId, identityId, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#getIdentity");
@@ -593,10 +595,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
  **identityId** | [**Id**](.md)| The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity  | [default to null]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 
@@ -617,7 +620,7 @@ Name | Type | Description  | Notes
 
 <a name="listEnrollmentRequests"></a>
 # **listEnrollmentRequests**
-> InlineResponse2005 listEnrollmentRequests(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count)
+> InlineResponse2003 listEnrollmentRequests(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count, whereOrder)
 
 Enumerate the enrollment requests of an organization
 
@@ -654,8 +657,9 @@ public class Example {
     String whereFiscalCode = MLLSNT82P65Z404U; // String | Returns the identity requests have the specified fiscal code
     Integer page = 1; // Integer | Restricts the search to the chosen page
     Integer count = 100; // Integer | Sets the number of users per page to display
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse2005 result = apiInstance.listEnrollmentRequests(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count);
+      InlineResponse2003 result = apiInstance.listEnrollmentRequests(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#listEnrollmentRequests");
@@ -681,10 +685,11 @@ Name | Type | Description  | Notes
  **whereFiscalCode** | **String**| Returns the identity requests have the specified fiscal code | [optional]
  **page** | **Integer**| Restricts the search to the chosen page | [optional]
  **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -705,7 +710,7 @@ Name | Type | Description  | Notes
 
 <a name="listIdentities"></a>
 # **listIdentities**
-> InlineResponse2001 listIdentities(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count)
+> InlineResponse2002 listIdentities(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count, whereOrder)
 
 Enumerate the identities of an organization
 
@@ -742,8 +747,9 @@ public class Example {
     String whereFiscalCode = MLLSNT82P65Z404U; // String | Returns the identities that have the specified fiscal code
     Integer page = 1; // Integer | Restricts the search to the chosen page
     Integer count = 100; // Integer | Sets the number of users per page to display
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse2001 result = apiInstance.listIdentities(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count);
+      InlineResponse2002 result = apiInstance.listIdentities(organizationId, whereProvider, whereUser, whereFirstName, whereLastName, whereRegisteredBy, whereFiscalCode, page, count, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#listIdentities");
@@ -769,10 +775,11 @@ Name | Type | Description  | Notes
  **whereFiscalCode** | **String**| Returns the identities that have the specified fiscal code | [optional]
  **page** | **Integer**| Restricts the search to the chosen page | [optional]
  **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -793,7 +800,7 @@ Name | Type | Description  | Notes
 
 <a name="listUserEnrollments"></a>
 # **listUserEnrollments**
-> InlineResponse2005 listUserEnrollments(organizationId, userId, page, count)
+> InlineResponse2003 listUserEnrollments(organizationId, userId, page, count, whereOrder)
 
 List the enrollments of an user
 
@@ -825,8 +832,9 @@ public class Example {
     Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
     Integer page = 1; // Integer | Restricts the search to the chosen page
     Integer count = 100; // Integer | Sets the number of users per page to display
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse2005 result = apiInstance.listUserEnrollments(organizationId, userId, page, count);
+      InlineResponse2003 result = apiInstance.listUserEnrollments(organizationId, userId, page, count, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#listUserEnrollments");
@@ -847,10 +855,11 @@ Name | Type | Description  | Notes
  **userId** | [**Id**](.md)| The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  | [default to null]
  **page** | **Integer**| Restricts the search to the chosen page | [optional]
  **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -871,7 +880,7 @@ Name | Type | Description  | Notes
 
 <a name="listUserIdentities"></a>
 # **listUserIdentities**
-> InlineResponse2001 listUserIdentities(organizationId, userId, page, count)
+> InlineResponse2002 listUserIdentities(organizationId, userId, page, count, whereOrder)
 
 Enumerate the identities of an user
 
@@ -903,8 +912,9 @@ public class Example {
     Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
     Integer page = 1; // Integer | Restricts the search to the chosen page
     Integer count = 100; // Integer | Sets the number of users per page to display
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse2001 result = apiInstance.listUserIdentities(organizationId, userId, page, count);
+      InlineResponse2002 result = apiInstance.listUserIdentities(organizationId, userId, page, count, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#listUserIdentities");
@@ -925,10 +935,11 @@ Name | Type | Description  | Notes
  **userId** | [**Id**](.md)| The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  | [default to null]
  **page** | **Integer**| Restricts the search to the chosen page | [optional]
  **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -947,9 +958,86 @@ Name | Type | Description  | Notes
 **403** | Forbidden |  -  |
 **404** | Not Found |  -  |
 
+<a name="renewIdentity"></a>
+# **renewIdentity**
+> InlineResponse2007 renewIdentity(organizationId, enrollmentId, inlineObject1)
+
+Renew an Identity
+
+This API allows to renew an Identity of a user. 
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.IdentitiesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://sandbox.signingtoday.com/api/v1");
+    
+    // Configure API key authorization: ApiKeyAuth
+    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+    ApiKeyAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //ApiKeyAuth.setApiKeyPrefix("Token");
+
+    IdentitiesApi apiInstance = new IdentitiesApi(defaultClient);
+    String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
+    Id enrollmentId = new Id(); // Id | The **enrollment-id** is the uuid code that identifies a specific enrollment request 
+    InlineObject1 inlineObject1 = new InlineObject1(); // InlineObject1 | 
+    try {
+      InlineResponse2007 result = apiInstance.renewIdentity(organizationId, enrollmentId, inlineObject1);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling IdentitiesApi#renewIdentity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
+ **enrollmentId** | [**Id**](.md)| The **enrollment-id** is the uuid code that identifies a specific enrollment request  | [default to null]
+ **inlineObject1** | [**InlineObject1**](InlineObject1.md)|  |
+
+### Return type
+
+[**InlineResponse2007**](InlineResponse2007.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
 <a name="requestEnrollment"></a>
 # **requestEnrollment**
-> InlineResponse2011 requestEnrollment(organizationId, identityRequest)
+> InlineResponse2007 requestEnrollment(organizationId, identityRequest)
 
 Submit an enrollment request
 
@@ -980,7 +1068,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     IdentityRequest identityRequest = new IdentityRequest(); // IdentityRequest | The enrollment request to submit
     try {
-      InlineResponse2011 result = apiInstance.requestEnrollment(organizationId, identityRequest);
+      InlineResponse2007 result = apiInstance.requestEnrollment(organizationId, identityRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentitiesApi#requestEnrollment");
@@ -1002,7 +1090,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2011**](InlineResponse2011.md)
+[**InlineResponse2007**](InlineResponse2007.md)
 
 ### Authorization
 

@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | **String** |  |  [optional]
-**meta** | [**InlineResponse2007Meta**](InlineResponse2007Meta.md) |  |  [optional]
+**meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**data** | [**IdentityEnroll**](IdentityEnroll.md) |  |  [optional]
 
 
 

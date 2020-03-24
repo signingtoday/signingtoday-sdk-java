@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**SignatureTransaction**](SignatureTransaction.md) |  |  [optional]
 **meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**data** | [**SignatureTransaction**](SignatureTransaction.md) |  |  [optional]
 
 
 

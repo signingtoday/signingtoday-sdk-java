@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**activate** | **String** |  |  [optional]
 **sendOtp** | **String** |  |  [optional]
+**activate** | **String** |  |  [optional]
 
 
 

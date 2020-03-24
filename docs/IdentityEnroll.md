@@ -6,19 +6,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**actions** | [**IdentityEnrollActions**](IdentityEnrollActions.md) |  |  [optional]
-**createdBy** | **String** |  |  [optional]
-**enrollTicket** | **String** |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]
-**label** | **String** |  |  [optional]
-**next** | **String** |  |  [optional]
-**provider** | **String** |  |  [optional]
-**providerData** | [**Object**](.md) | Data of the provider that issued the certificate, it is variable from to provider to provider |  [optional]
-**providerType** | **String** |  |  [optional]
-**registeredBy** | **String** |  |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
-**urlback** | **String** |  |  [optional]
+**next** | **String** |  |  [optional]
+**actions** | [**IdentityEnrollActions**](IdentityEnrollActions.md) |  |  [optional]
+**provider** | **String** |  |  [optional]
+**label** | **String** |  |  [optional]
+**providerType** | **String** |  |  [optional]
 **user** | **String** |  |  [optional]
+**registeredBy** | **String** |  |  [optional]
+**providerData** | [**Object**](.md) | Data of the provider that issued the certificate, it is variable from to provider to provider |  [optional]
+**enrollTicket** | **String** |  |  [optional]
+**createdBy** | **String** |  |  [optional]
+**urlback** | **String** |  |  [optional]
 
 
 

@@ -6,8 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**AutomaticSignature**](AutomaticSignature.md) |  |  [optional]
+**pagination** | [**PaginationData**](PaginationData.md) |  |  [optional]
 **meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**data** | [**List&lt;SignatureTransaction&gt;**](SignatureTransaction.md) |  |  [optional]
 
 
 

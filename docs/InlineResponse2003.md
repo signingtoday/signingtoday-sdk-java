@@ -6,8 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | **String** |  |  [optional]
+**pagination** | [**PaginationData**](PaginationData.md) |  |  [optional]
 **meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**data** | [**List&lt;IdentityEnroll&gt;**](IdentityEnroll.md) |  |  [optional]
 
 
 

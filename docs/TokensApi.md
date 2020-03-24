@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 <a name="createToken"></a>
 # **createToken**
-> InlineResponse2014 createToken(organizationId, createToken)
+> InlineResponse2015 createToken(organizationId, createToken)
 
 Create an application token
 
@@ -45,7 +45,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     CreateToken createToken = new CreateToken(); // CreateToken | Token data
     try {
-      InlineResponse2014 result = apiInstance.createToken(organizationId, createToken);
+      InlineResponse2015 result = apiInstance.createToken(organizationId, createToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TokensApi#createToken");
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**InlineResponse2015**](InlineResponse2015.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 <a name="getToken"></a>
 # **getToken**
-> InlineResponse2014 getToken(organizationId, tokenId)
+> InlineResponse2015 getToken(organizationId, tokenId)
 
 Get information about a token
 
@@ -194,7 +194,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id tokenId = new Id(); // Id | The **token-id** is the uuid code that identifies a token. It is, as well, used to restrict the requested operation to the scope of that token 
     try {
-      InlineResponse2014 result = apiInstance.getToken(organizationId, tokenId);
+      InlineResponse2015 result = apiInstance.getToken(organizationId, tokenId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TokensApi#getToken");
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**InlineResponse2015**](InlineResponse2015.md)
 
 ### Authorization
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 <a name="listTokens"></a>
 # **listTokens**
-> InlineResponse20011 listTokens(organizationId, whereUser, whereLabel, count, page)
+> InlineResponse2004 listTokens(organizationId, whereUser, whereLabel, count, page, whereOrder)
 
 Enumerate the tokens of an organization
 
@@ -270,8 +270,9 @@ public class Example {
     String whereLabel = token; // String | Returns the tokens with the specified label
     Integer count = 100; // Integer | Sets the number of tokens per page to display
     Integer page = 1; // Integer | Restricts the search to chosen page
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse20011 result = apiInstance.listTokens(organizationId, whereUser, whereLabel, count, page);
+      InlineResponse2004 result = apiInstance.listTokens(organizationId, whereUser, whereLabel, count, page, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TokensApi#listTokens");
@@ -293,10 +294,11 @@ Name | Type | Description  | Notes
  **whereLabel** | **String**| Returns the tokens with the specified label | [optional]
  **count** | **Integer**| Sets the number of tokens per page to display | [optional] [default to 100]
  **page** | **Integer**| Restricts the search to chosen page | [optional]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 
@@ -317,7 +319,7 @@ Name | Type | Description  | Notes
 
 <a name="listUserTokens"></a>
 # **listUserTokens**
-> InlineResponse20011 listUserTokens(organizationId, userId, page, count)
+> InlineResponse2004 listUserTokens(organizationId, userId, page, count, whereOrder)
 
 Enumerate the tokens of an user
 
@@ -349,8 +351,9 @@ public class Example {
     Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
     Integer page = 1; // Integer | Restricts the search to the chosen page
     Integer count = 100; // Integer | Sets the number of users per page to display
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse20011 result = apiInstance.listUserTokens(organizationId, userId, page, count);
+      InlineResponse2004 result = apiInstance.listUserTokens(organizationId, userId, page, count, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TokensApi#listUserTokens");
@@ -371,10 +374,11 @@ Name | Type | Description  | Notes
  **userId** | [**Id**](.md)| The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  | [default to null]
  **page** | **Integer**| Restricts the search to the chosen page | [optional]
  **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 
@@ -395,7 +399,7 @@ Name | Type | Description  | Notes
 
 <a name="updateToken"></a>
 # **updateToken**
-> InlineResponse2014 updateToken(organizationId, tokenId, updateToken)
+> InlineResponse2015 updateToken(organizationId, tokenId, updateToken)
 
 Update the properties of a token
 
@@ -427,7 +431,7 @@ public class Example {
     Id tokenId = new Id(); // Id | The **token-id** is the uuid code that identifies a token. It is, as well, used to restrict the requested operation to the scope of that token 
     UpdateToken updateToken = new UpdateToken(); // UpdateToken | Token data
     try {
-      InlineResponse2014 result = apiInstance.updateToken(organizationId, tokenId, updateToken);
+      InlineResponse2015 result = apiInstance.updateToken(organizationId, tokenId, updateToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TokensApi#updateToken");
@@ -450,7 +454,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**InlineResponse2015**](InlineResponse2015.md)
 
 ### Authorization
 

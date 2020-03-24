@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | **String** |  |  [optional]
 **meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**data** | **String** |  |  [optional]
 
 
 

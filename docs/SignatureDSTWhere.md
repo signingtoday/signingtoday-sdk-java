@@ -2,6 +2,7 @@
 
 # SignatureDSTWhere
 
+Where will be allocated the Signature on the document. This field is made of two parameters, defined as follows 
 ## Properties
 
 Name | Type | Description | Notes

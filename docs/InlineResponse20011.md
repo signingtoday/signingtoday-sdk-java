@@ -6,9 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List&lt;Token&gt;**](Token.md) |  |  [optional]
 **meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
-**pagination** | [**PaginationData**](PaginationData.md) |  |  [optional]
+**data** | [**AutomaticSignature**](AutomaticSignature.md) |  |  [optional]
 
 
 

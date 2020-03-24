@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**cancelDST**](SignatureTransactionsApi.md#cancelDST) | **POST** /{organization-id}/signature-transactions/{dst-id}/cancel | Mark a DST as canceled
 [**createDST**](SignatureTransactionsApi.md#createDST) | **POST** /{organization-id}/signature-transactions | Create a Digital Signature Transaction
 [**deleteDST**](SignatureTransactionsApi.md#deleteDST) | **DELETE** /{organization-id}/signature-transactions/{dst-id} | Delete a Digital Signature Transaction
+[**deleteDSTResources**](SignatureTransactionsApi.md#deleteDSTResources) | **DELETE** /{organization-id}/signature-transactions/{dst-id}/resources | Delete the resources of a DST
 [**getDST**](SignatureTransactionsApi.md#getDST) | **GET** /{organization-id}/signature-transactions/{dst-id} | Get information about a DST
 [**getDocument**](SignatureTransactionsApi.md#getDocument) | **GET** /{organization-id}/documents/{document-id}/download | Download a document from a DST
 [**listDSTs**](SignatureTransactionsApi.md#listDSTs) | **GET** /{organization-id}/signature-transactions | List the DSTs of an organization
@@ -14,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="cancelDST"></a>
 # **cancelDST**
-> InlineResponse2013 cancelDST(organizationId, dstId, inlineObject1)
+> InlineResponse2013 cancelDST(organizationId, dstId, inlineObject2)
 
 Mark a DST as canceled
 
@@ -44,9 +45,9 @@ public class Example {
     SignatureTransactionsApi apiInstance = new SignatureTransactionsApi(defaultClient);
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id dstId = new Id(); // Id | The **dst-id** is the uuid code that identifies a digital signature transaction. It is used as a path parameter to filter the requested operation to the specified **dst** 
-    InlineObject1 inlineObject1 = new InlineObject1(); // InlineObject1 | 
+    InlineObject2 inlineObject2 = new InlineObject2(); // InlineObject2 | 
     try {
-      InlineResponse2013 result = apiInstance.cancelDST(organizationId, dstId, inlineObject1);
+      InlineResponse2013 result = apiInstance.cancelDST(organizationId, dstId, inlineObject2);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignatureTransactionsApi#cancelDST");
@@ -65,7 +66,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
  **dstId** | [**Id**](.md)| The **dst-id** is the uuid code that identifies a digital signature transaction. It is used as a path parameter to filter the requested operation to the specified **dst**  | [default to null]
- **inlineObject1** | [**InlineObject1**](InlineObject1.md)|  |
+ **inlineObject2** | [**InlineObject2**](InlineObject2.md)|  |
 
 ### Return type
 
@@ -164,7 +165,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteDST"></a>
 # **deleteDST**
-> InlineResponse2007 deleteDST(organizationId, dstId)
+> InlineResponse2009 deleteDST(organizationId, dstId)
 
 Delete a Digital Signature Transaction
 
@@ -195,7 +196,7 @@ public class Example {
     String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
     Id dstId = new Id(); // Id | The **dst-id** is the uuid code that identifies a digital signature transaction. It is used as a path parameter to filter the requested operation to the specified **dst** 
     try {
-      InlineResponse2007 result = apiInstance.deleteDST(organizationId, dstId);
+      InlineResponse2009 result = apiInstance.deleteDST(organizationId, dstId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignatureTransactionsApi#deleteDST");
@@ -217,7 +218,81 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**InlineResponse2009**](InlineResponse2009.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+<a name="deleteDSTResources"></a>
+# **deleteDSTResources**
+> InlineResponse20010 deleteDSTResources(organizationId, dstId)
+
+Delete the resources of a DST
+
+This API allows to delete the resources of a Digital Signature Transaction. 
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.SignatureTransactionsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://sandbox.signingtoday.com/api/v1");
+    
+    // Configure API key authorization: ApiKeyAuth
+    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+    ApiKeyAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //ApiKeyAuth.setApiKeyPrefix("Token");
+
+    SignatureTransactionsApi apiInstance = new SignatureTransactionsApi(defaultClient);
+    String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
+    Id dstId = new Id(); // Id | The **dst-id** is the uuid code that identifies a digital signature transaction. It is used as a path parameter to filter the requested operation to the specified **dst** 
+    try {
+      InlineResponse20010 result = apiInstance.deleteDSTResources(organizationId, dstId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SignatureTransactionsApi#deleteDSTResources");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
+ **dstId** | [**Id**](.md)| The **dst-id** is the uuid code that identifies a digital signature transaction. It is used as a path parameter to filter the requested operation to the specified **dst**  | [default to null]
+
+### Return type
+
+[**InlineResponse20010**](InlineResponse20010.md)
 
 ### Authorization
 
@@ -386,7 +461,7 @@ Name | Type | Description  | Notes
 
 <a name="listDSTs"></a>
 # **listDSTs**
-> InlineResponse2006 listDSTs(organizationId, whereSigner, whereStatus, whereTitle, whereCreatedBy, whereCreated, whereSignatureStatus, whereDocumentName, whereReason, whereSignatureName, whereSignerGroup, page, count)
+> InlineResponse2008 listDSTs(organizationId, whereSigner, whereStatus, whereTitle, whereCreatedBy, whereCreated, whereSignatureStatus, whereDocumentName, whereReason, whereSignatureName, whereSignerGroup, page, count, whereOrder)
 
 List the DSTs of an organization
 
@@ -419,7 +494,7 @@ public class Example {
     String whereStatus = performed; // String | Returns the Digital Signature Transactions with the specified status
     String whereTitle = Signature of a document; // String | Returns the Digital Signature Transactions that have the specified title
     String whereCreatedBy = jdo@example; // String | Returns the Digital Signature Transactions created by the specified user
-    String whereCreated = 2019-11-24 12:24:17.430000; // String | Returns the Digital Signature Transactions created before, after or in the declared range
+    String whereCreated = 2019-11-24T12:24:17.430Z; // String | Returns the Digital Signature Transactions created before, after or in the declared range
     String whereSignatureStatus = pending; // String | Returns the Digital Signature Transactions where at least one of the signers has the queried status
     String whereDocumentName = Document of example; // String | Returns the Digital Signature Transactions that have into its documents the queried one
     String whereReason = "whereReason_example"; // String | Returns the Digital Signature Transactions with the specified reason
@@ -427,8 +502,9 @@ public class Example {
     String whereSignerGroup = @administrators; // String | Returns the Digital Signature Transactions that have the specified group of signers
     Integer page = 1; // Integer | Restricts the search to the chosen page
     Integer count = 100; // Integer | Sets the number of users per page to display
+    String whereOrder = where_first_name; // String | The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \"**-**\" in front of the value indicates descending order), then the second value and so on
     try {
-      InlineResponse2006 result = apiInstance.listDSTs(organizationId, whereSigner, whereStatus, whereTitle, whereCreatedBy, whereCreated, whereSignatureStatus, whereDocumentName, whereReason, whereSignatureName, whereSignerGroup, page, count);
+      InlineResponse2008 result = apiInstance.listDSTs(organizationId, whereSigner, whereStatus, whereTitle, whereCreatedBy, whereCreated, whereSignatureStatus, whereDocumentName, whereReason, whereSignatureName, whereSignerGroup, page, count, whereOrder);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SignatureTransactionsApi#listDSTs");
@@ -458,10 +534,11 @@ Name | Type | Description  | Notes
  **whereSignerGroup** | **String**| Returns the Digital Signature Transactions that have the specified group of signers | [optional]
  **page** | **Integer**| Restricts the search to the chosen page | [optional]
  **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **whereOrder** | **String**| The **where_order** query parameter takes one or more values separated by a comma and a space. The result will be ordered by the first value (ascending order is implied; a \&quot;**-**\&quot; in front of the value indicates descending order), then the second value and so on | [optional]
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
