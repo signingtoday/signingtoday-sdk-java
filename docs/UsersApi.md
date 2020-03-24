@@ -1,97 +1,27 @@
 # UsersApi
 
-All URIs are relative to *https://sandbox.signingtoday.com/api/v1*
+All URIs are relative to *https://web.sandbox.signingtoday.com/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUser**](UsersApi.md#createUser) | **POST** /{organization-id}/users | Create a user of the organization
-[**getUser**](UsersApi.md#getUser) | **GET** /{organization-id}/users/{user-id} | Get information about an user
-[**listUsers**](UsersApi.md#listUsers) | **GET** /{organization-id}/users | Enumerate the users of an organization
-[**updateUser**](UsersApi.md#updateUser) | **PUT** /{organization-id}/users/{user-id} | Edit one or more user properties
+[**userIdDelete**](UsersApi.md#userIdDelete) | **DELETE** /user/{id} | Enable or disable a User
+[**userIdGet**](UsersApi.md#userIdGet) | **GET** /user/{id} | Retrieve a User
+[**userIdIdentitiesGet**](UsersApi.md#userIdIdentitiesGet) | **GET** /user/{id}/identities | Retrieve User identities
+[**userIdPut**](UsersApi.md#userIdPut) | **PUT** /user/{id} | Update a User
+[**userIdRolePut**](UsersApi.md#userIdRolePut) | **PUT** /user/{id}/role | Change the User role
+[**usersGet**](UsersApi.md#usersGet) | **GET** /users | Retrieve Users
+[**usersGroupsGet**](UsersApi.md#usersGroupsGet) | **GET** /users/groups | Retrieve UserGroups
+[**usersGroupsPost**](UsersApi.md#usersGroupsPost) | **POST** /users/groups | Create a new UserGroups
+[**usersPost**](UsersApi.md#usersPost) | **POST** /users | Create a new User
 
 
-<a name="createUser"></a>
-# **createUser**
-> InlineResponse2015 createUser(organizationId, createUser)
+<a name="userIdDelete"></a>
+# **userIdDelete**
+> userIdDelete(id, enabled)
 
-Create a user of the organization
+Enable or disable a User
 
-This API allows to create a new user of the organization. 
-
-### Example
-```java
-// Import classes:
-import signingToday.client.ApiClient;
-import signingToday.client.ApiException;
-import signingToday.client.Configuration;
-import signingToday.client.auth.*;
-import signingToday.client.models.*;
-import signingToday.client.api.UsersApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox.signingtoday.com/api/v1");
-    
-    // Configure API key authorization: ApiKeyAuth
-    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
-    ApiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //ApiKeyAuth.setApiKeyPrefix("Token");
-
-    UsersApi apiInstance = new UsersApi(defaultClient);
-    String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
-    CreateUser createUser = new CreateUser(); // CreateUser | The new user object to create
-    try {
-      InlineResponse2015 result = apiInstance.createUser(organizationId, createUser);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UsersApi#createUser");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
- **createUser** | [**CreateUser**](CreateUser.md)| The new user object to create |
-
-### Return type
-
-[**InlineResponse2015**](InlineResponse2015.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Created |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**409** | Conflict |  -  |
-
-<a name="getUser"></a>
-# **getUser**
-> InlineResponse2015 getUser(organizationId, userId)
-
-Get information about an user
-
-This API allows to get information about an user. 
+This API allows to **enable** or **disable** a User account. 
 
 ### Example
 ```java
@@ -106,22 +36,19 @@ import signingToday.client.api.UsersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox.signingtoday.com/api/v1");
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
     
-    // Configure API key authorization: ApiKeyAuth
-    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
-    ApiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //ApiKeyAuth.setApiKeyPrefix("Token");
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
     UsersApi apiInstance = new UsersApi(defaultClient);
-    String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
-    Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
+    UUID id = 737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4; // UUID | The value of _the unique id_
+    Boolean enabled = true; // Boolean | This is a _boolean_ parameter. If true the User is **enabled** 
     try {
-      InlineResponse2015 result = apiInstance.getUser(organizationId, userId);
-      System.out.println(result);
+      apiInstance.userIdDelete(id, enabled);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UsersApi#getUser");
+      System.err.println("Exception when calling UsersApi#userIdDelete");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -135,37 +62,38 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
- **userId** | [**Id**](.md)| The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  | [default to null]
+ **id** | [**UUID**](.md)| The value of _the unique id_ |
+ **enabled** | **Boolean**| This is a _boolean_ parameter. If true the User is **enabled**  | [optional] [default to false]
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+null (empty response body)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
+**204** | The request has been satisfyied. No output. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
 
-<a name="listUsers"></a>
-# **listUsers**
-> InlineResponse20012 listUsers(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count)
+<a name="userIdGet"></a>
+# **userIdGet**
+> User userIdGet(id)
 
-Enumerate the users of an organization
+Retrieve a User
 
-This API allows to enumerate the users of an organization. 
+This API allows to retrieve a User.
 
 ### Example
 ```java
@@ -180,27 +108,19 @@ import signingToday.client.api.UsersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox.signingtoday.com/api/v1");
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
     
-    // Configure API key authorization: ApiKeyAuth
-    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
-    ApiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //ApiKeyAuth.setApiKeyPrefix("Token");
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
     UsersApi apiInstance = new UsersApi(defaultClient);
-    String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
-    String whereMembershipId = jdo; // String | Returns the users that have the specified id
-    String whereEmail = test@mail.com; // String | Returns the users that have the specified email
-    String whereLastName = Doe; // String | Returns the users that have the specified last name
-    String whereFirstName = John; // String | Returns the users that have the specified first name
-    Integer page = 1; // Integer | Restricts the search to the chosen page
-    Integer count = 100; // Integer | Sets the number of users per page to display
+    UUID id = 737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4; // UUID | The value of _the unique id_
     try {
-      InlineResponse20012 result = apiInstance.listUsers(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count);
+      User result = apiInstance.userIdGet(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UsersApi#listUsers");
+      System.err.println("Exception when calling UsersApi#userIdGet");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -214,42 +134,37 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
- **whereMembershipId** | **String**| Returns the users that have the specified id | [optional]
- **whereEmail** | **String**| Returns the users that have the specified email | [optional]
- **whereLastName** | **String**| Returns the users that have the specified last name | [optional]
- **whereFirstName** | **String**| Returns the users that have the specified first name | [optional]
- **page** | **Integer**| Restricts the search to the chosen page | [optional]
- **count** | **Integer**| Sets the number of users per page to display | [optional] [default to 100]
+ **id** | [**UUID**](.md)| The value of _the unique id_ |
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**User**](User.md)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
+**200** | The data matching the selection parameters. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
 
-<a name="updateUser"></a>
-# **updateUser**
-> InlineResponse2015 updateUser(organizationId, userId, updateUser)
+<a name="userIdIdentitiesGet"></a>
+# **userIdIdentitiesGet**
+> List&lt;Identity&gt; userIdIdentitiesGet(id)
 
-Edit one or more user properties
+Retrieve User identities
 
-This API allows to edit one or more user properties. 
+This API allows to retrieve user identities.
 
 ### Example
 ```java
@@ -264,23 +179,19 @@ import signingToday.client.api.UsersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox.signingtoday.com/api/v1");
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
     
-    // Configure API key authorization: ApiKeyAuth
-    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
-    ApiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //ApiKeyAuth.setApiKeyPrefix("Token");
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
     UsersApi apiInstance = new UsersApi(defaultClient);
-    String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
-    Id userId = new Id(); // Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
-    UpdateUser updateUser = new UpdateUser(); // UpdateUser | User properties to be edited
+    UUID id = 737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4; // UUID | The value of _the unique id_
     try {
-      InlineResponse2015 result = apiInstance.updateUser(organizationId, userId, updateUser);
+      List<Identity> result = apiInstance.userIdIdentitiesGet(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UsersApi#updateUser");
+      System.err.println("Exception when calling UsersApi#userIdIdentitiesGet");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -294,28 +205,473 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **String**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &quot;api-demo&quot;]
- **userId** | [**Id**](.md)| The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  | [default to null]
- **updateUser** | [**UpdateUser**](UpdateUser.md)| User properties to be edited |
+ **id** | [**UUID**](.md)| The value of _the unique id_ |
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**List&lt;Identity&gt;**](Identity.md)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
+**200** | The identities associated to the user. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+<a name="userIdPut"></a>
+# **userIdPut**
+> userIdPut(id, user)
+
+Update a User
+
+This API allows to update a User.
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.UsersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
+    
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    UsersApi apiInstance = new UsersApi(defaultClient);
+    UUID id = 737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4; // UUID | The value of _the unique id_
+    User user = new User(); // User | User replacing current object.
+    try {
+      apiInstance.userIdPut(id, user);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UsersApi#userIdPut");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**UUID**](.md)| The value of _the unique id_ |
+ **user** | [**User**](User.md)| User replacing current object. |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The request has been satisfyied. No output. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+<a name="userIdRolePut"></a>
+# **userIdRolePut**
+> userIdRolePut(id, newRole)
+
+Change the User role
+
+This API allows to change the permissions associated to the users, (**capabilities**) according to predefined user roles. 
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.UsersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
+    
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    UsersApi apiInstance = new UsersApi(defaultClient);
+    UUID id = 737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4; // UUID | The value of _the unique id_
+    String newRole = instructor; // String | The new **role** of the User. Allowed values are **admin**, **instructor**, **signer** 
+    try {
+      apiInstance.userIdRolePut(id, newRole);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UsersApi#userIdRolePut");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**UUID**](.md)| The value of _the unique id_ |
+ **newRole** | **String**| The new **role** of the User. Allowed values are **admin**, **instructor**, **signer**  | [enum: admin, instructor, signer]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The request has been satisfyied. No output. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**409** | Cannot satisfy the request because the resource is in an illegal status. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+<a name="usersGet"></a>
+# **usersGet**
+> UsersGetResponse usersGet($top, $skip, $count, $orderBy, $filter)
+
+Retrieve Users
+
+This allows to get the list of the Users of an Organization.
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.UsersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
+    
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    UsersApi apiInstance = new UsersApi(defaultClient);
+    Integer $top = 32; // Integer | A number of results to return. Applied after **$skip** 
+    Long $skip = 64; // Long | An offset into the collection of results
+    Boolean $count = true; // Boolean | If true, the server includes the count of all the items in the response 
+    String $orderBy = $orderBy=updatedAt; // String | An ordering definition (eg. $orderBy=updatedAt,desc)
+    String $filter = $filter=name=="Milk"; // String | A filter definition (eg. $filter=name == \"Milk\" or surname == \"Bread\")
+    try {
+      UsersGetResponse result = apiInstance.usersGet($top, $skip, $count, $orderBy, $filter);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UsersApi#usersGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **$top** | **Integer**| A number of results to return. Applied after **$skip**  | [optional]
+ **$skip** | **Long**| An offset into the collection of results | [optional]
+ **$count** | **Boolean**| If true, the server includes the count of all the items in the response  | [optional]
+ **$orderBy** | **String**| An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) | [optional]
+ **$filter** | **String**| A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) | [optional]
+
+### Return type
+
+[**UsersGetResponse**](UsersGetResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The data matching the selection parameters. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+<a name="usersGroupsGet"></a>
+# **usersGroupsGet**
+> UserGroupGetResponse usersGroupsGet($top, $skip, $count, $orderBy, $filter)
+
+Retrieve UserGroups
+
+This API allows to get the list of the UserGroups.
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.UsersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
+    
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    UsersApi apiInstance = new UsersApi(defaultClient);
+    Integer $top = 32; // Integer | A number of results to return. Applied after **$skip** 
+    Long $skip = 64; // Long | An offset into the collection of results
+    Boolean $count = true; // Boolean | If true, the server includes the count of all the items in the response 
+    String $orderBy = $orderBy=updatedAt; // String | An ordering definition (eg. $orderBy=updatedAt,desc)
+    String $filter = $filter=name=="Milk"; // String | A filter definition (eg. $filter=name == \"Milk\" or surname == \"Bread\")
+    try {
+      UserGroupGetResponse result = apiInstance.usersGroupsGet($top, $skip, $count, $orderBy, $filter);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UsersApi#usersGroupsGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **$top** | **Integer**| A number of results to return. Applied after **$skip**  | [optional]
+ **$skip** | **Long**| An offset into the collection of results | [optional]
+ **$count** | **Boolean**| If true, the server includes the count of all the items in the response  | [optional]
+ **$orderBy** | **String**| An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) | [optional]
+ **$filter** | **String**| A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) | [optional]
+
+### Return type
+
+[**UserGroupGetResponse**](UserGroupGetResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The data matching the selection parameters. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+<a name="usersGroupsPost"></a>
+# **usersGroupsPost**
+> usersGroupsPost(userGroup)
+
+Create a new UserGroups
+
+This API allows to create a new UserGroups.
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.UsersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
+    
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    UsersApi apiInstance = new UsersApi(defaultClient);
+    List<UserGroup> userGroup = Arrays.asList(); // List<UserGroup> | UserGroup list to be added.
+    try {
+      apiInstance.usersGroupsPost(userGroup);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UsersApi#usersGroupsPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userGroup** | [**List&lt;UserGroup&gt;**](UserGroup.md)| UserGroup list to be added. |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The request has been satisfyied. No output. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+<a name="usersPost"></a>
+# **usersPost**
+> UUID usersPost(createUserRequest)
+
+Create a new User
+
+This API allows to create a new User.
+
+### Example
+```java
+// Import classes:
+import signingToday.client.ApiClient;
+import signingToday.client.ApiException;
+import signingToday.client.Configuration;
+import signingToday.client.auth.*;
+import signingToday.client.models.*;
+import signingToday.client.api.UsersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
+    
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    UsersApi apiInstance = new UsersApi(defaultClient);
+    CreateUserRequest createUserRequest = new CreateUserRequest(); // CreateUserRequest | 
+    try {
+      UUID result = apiInstance.usersPost(createUserRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UsersApi#usersPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createUserRequest** | [**CreateUserRequest**](CreateUserRequest.md)|  |
+
+### Return type
+
+[**UUID**](UUID.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The request has been satisfyied, new resource created. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
 

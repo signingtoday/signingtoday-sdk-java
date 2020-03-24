@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identityId** | [**Id**](Id.md) |  |  [optional]
-**sessionId** | **String** | This is the id of the session is going to use in order the perform the signature or the signatures |  [optional]
+**currentPassword** | **String** | The current password of the user |  [optional]
+**newPassword** | **String** | The new password choosen |  [optional]
 
 
 

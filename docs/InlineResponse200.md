@@ -6,8 +6,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Organization**](Organization.md) |  |  [optional]
-**meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  |  [optional]
+**accessToken** | **String** |  |  [optional]
+**tokenType** | **String** |  |  [optional]
+**refreshToken** | **String** |  |  [optional]
+**expiresIn** | **Long** |  |  [optional]
+**scope** | **String** |  |  [optional]
 
 
 

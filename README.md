@@ -1,286 +1,110 @@
 # signingToday-java-client
-Signing Today API
-- API version: 1.5.0
-  - Build date: 2020-01-03T15:44:26.198Z[GMT]
-*Signing Today* enables seamless integration of digital signatures into any
-website by the use of easy requests to our API. This is the smart way of
-adding digital signature support with a great user experience.
-*Signing Today APIs* use HTTP methods and are RESTful based, moreover they
-are protected by a *server to server authentication* standard by the use of
-tokens.
-*Signing Today APIs* can be used in these environments:
-| Environment | Description | Endpoint |
-| ----------- | ----------- | -------- |
-| Sandbox     | Test environment | `https://sandbox.signingtoday.com` |
-| Live        | Production environment | `https://api.signingtoday.com` |
-For every single request to Signing Today has to be defined the following
-*HTTP* header:
-- `Authorization`, which contains the authentication token.
-If the request has a body than another *HTTP* header is requested:
-- `Content-Type`, with `application/json` value.
-Follows an example of usage to enumerate all the user of *my-org*
-organization.
-**Example**
-```json
-$ curl https://sandbox.signingtoday.com/api/v1/my-org/users \
-    -H 'Authorization: Token <access-token>'
-```
-## HTTP methods used
-APIs use the right HTTP verb in every situation.
-| Method   | Description                    |
-| -------- | ------------------------------ |
-| `GET`    | Request data from a resource   |
-| `POST`   | Send data to create a resource |
-| `PUT`    | Update a resource              |
-| `PATCH`  | Partially update a resource    |
-| `DELETE` | Delete a resourse              |
-## Response definition
-All the response are in JSON format.
-As response to a request of all users of an organization you will have a
-result like this:
-```json
-{
-    "pagination": {
-      "count": 75,
-      "previous": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=1",
-      "next": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=3",
-      "pages": 8,
-      "page": 2
-    },
-    "meta": {
-      "code": 200
-    },
-    "data": [
-      {
-        "id": "jdo",
-        "status": "enabled",
-        "type": "Basic user account",
-        "email": johndoe@dummyemail.com,
-        "first_name": "John",
-        "last_name": "Doe",
-        "wallet": [],
-        "created_by": "system",
-        "owner": false,
-        "automatic": false,
-        "rao": false
-      },
-      ...
-    ]
-  }
-```
-The JSON of the response is made of three parts:
-- Pagination
-- Meta
-- Data
-### Pagination
-*Pagination* object allows to split the response into parts and then to
-rebuild it sequentially by the use of `next` and `previous` parameters, by
-which you get previous and following blocks. The *Pagination* is present
-only if the response is a list of objects.
-The general structure of *Pagination* object is the following:
-```json
-{
-    "pagination": {
-      "count": 75,
-      "previous": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=1",
-      "next": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=3",
-      "pages": 8,
-      "page": 2
-    },
-    ...
-  }
-```
-### Meta
-*Meta* object is used to enrich the information about the response. In the
-previous example, a successful case of response, *Meta* will have value
-`status: 2XX`. In case of unsuccessful response, *Meta* will have further
-information, as follows:
-```json
-{
-    "meta": {
-      "code": <HTTP STATUS CODE>,
-      "error_type": <STATUS CODE DESCRIPTION>,
-      "error_message": <ERROR DESCRIPTION>
-    }
-  }
-```
-### Data
-*Data* object outputs as object or list of them. Contains the expected data
-as requested to the API.
-## Search filters
-Search filters of the API have the following structure:
-`where_ATTRIBUTENAME`=`VALUE`
-In this way you make a case-sensitive search of *VALUE*. You can extend it
-through the Django lookup, obtaining more specific filters. For example:
-`where_ATTRIBUTENAME__LOOKUP`=`VALUE`
-where *LOOKUP* can be replaced with `icontains` to have a partial insensitive
-research, where
-`where_first_name__icontains`=`CHa`
-matches with every user that have the *cha* string in their name, with
-no differences between capital and lower cases.
-[Here](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#field-lookups)
-the list of the lookups.
-## Webhooks
-Signing Today supports webhooks for the update of DSTs and identities status.
-You can choose if to use or not webhooks and if you want to receive updates
-about DSTs and/or identities. You can configurate it on application token
-level, in the *webhook* field, as follows:
-```json
-"webhooks": {
-  "dst": "URL",
-  "identity": "URL"
-  }
-```
-### DSTs status update
-DSTs send the following status updates:
-- **DST_STATUS_CHANGED**: whenever the DST changes its status
-- **SIGNATURE_STATUS_CHANGED**: whenever one of the signatures changes its
-status
-#### DST_STATUS_CHANGED
-Sends the following information:
-```json
-{
-    "message": "DST_STATUS_CHANGED",
-    "data": {
-      "status": "<DST_STATUS>",
-      "dst": "<DST_ID>",
-      "reason": "<DST_REASON>"
-    }
-  }
-```
-#### SIGNATURE_STATUS_CHANGED
-Sends the following information:
-```json
-{
-    "message": "SIGNATURE_STATUS_CHANGED",
-    "data": {
-      "status": "<SIGNATURE_STATUS>",
-      "group": <MEMBERSHIP_GROUP_INDEX>,
-      "dst": {
-        "id": "<DST_ID>",
-        "title": "<DST_TITLE>"
-      },
-      "signature": "<SIGNATURE_ID>",
-      "signer": "<SIGNER_USERNAME>",
-      "position": "<SIGNATURE_POSITION>",
-      "document": {
-        "display_name": "<DOCUMENT_TITLE>",
-        "id": "<DOCUMENT_ID>",
-        "order": <DOCUMENT_INDEX>
-      },
-      "automatic": <DECLARES_IF_THE_SIGNER_IS_AUTOMATIC>,
-      "page": "<SIGNATURE_PAGE>"
-    }
-  }
-```
-### Identities status update
-Identities send the following status updates:
-- **IDENTITY_REQUEST_ENROLLED**: whenever an identity request is activated
-#### IDENTITY_REQUEST_ENROLLED
-Sends the following information:
-```json
-{
-    "message": "IDENTITY_REQUEST_ENROLLED",
-    "data": {
-      "status": "<REQUEST_STATUS>",
-      "request": "<REQUEST_ID>",
-      "user": "<APPLICANT_USERNAME>"
-    }
-  }
-```
-### Urlback
-Sometimes may be necessary to make a redirect after an user, from the
-signature tray, has completed his operations or activated a certificate.
-If set, redirects could happen in 3 cases:
-- after a signature or decline
-- after a DST has been signed by all the signers or canceled
-- after the activation of a certificate
-In the first two cases the urlback returns the following information through
-a data form:
-- **dst-id**: id of the DST
-- **dst-url**: signature_ticket of the signature
-- **dst-status**: current status of the DST
-- **dst-signature-id**: id of the signature
-- **dst-signature-status**: current status of the signature
-- **user**: username of the signer
-- **decline-reason**: in case of a refused DST contains the reason of the
-decline
-In the last case the urlback returns the following information through a
-data form:
-- **user**: username of the user activated the certificate
-- **identity-provider**: the provider has been used to issue the certificate
-- **identity-request-id**: id of the enrollment request
-- **identity-id**: id of the new identity
-- **identity-label**: the label assigned to the identity
-- **identity-certificate**: public key of the certificate
-  For more information, please visit [https://signing.today/contacts/](https://signing.today/contacts/)
+
+Signing Today Web
+- API version: 2.0.0
+  - Build date: 2020-03-24T08:13:36.809Z[GMT]
+
+*Signing Today* is the perfect Digital Signature Gateway. Whenever in Your
+workflow You need to add one or more Digital Signatures to Your
+document, *Signing Today* is the right choice. You prepare Your documents,
+*Signing Today* takes care of all the rest: send invitations
+(`signature tickets`) to signers, collects their signatures, send You
+back the signed document.
+Integrating *Signing Today* in Your existing applications is very easy.
+Just follow these API specifications and get inspired by the many
+examples presented hereafter.
+
+
+
 *Automatically generated by the [OpenAPI Generator](https://openapi-generator.tech)*
+
+
 ## Requirements
+
 Building the API client library requires:
 1. Java 1.7+
 2. Maven/Gradle
+
 ## Installation
+
 To install the API client library to your local Maven repository, simply execute:
+
 ```shell
 mvn clean install
 ```
+
 To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
+
 ```shell
 mvn clean deploy
 ```
+
 Refer to the [OSSRH Guide](http://central.sonatype.org/pages/ossrh-guide.html) for more information.
+
 ### Maven users
+
 Add this dependency to your project's POM:
+
 ```xml
 <dependency>
   <groupId>signingToday</groupId>
   <artifactId>signingToday-java-client</artifactId>
-  <version>1.5.0</version>
+  <version>2.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
+
 ### Gradle users
+
 Add this dependency to your project's build file:
+
 ```groovy
-compile "signingToday:signingToday-java-client:1.5.0"
+compile "signingToday:signingToday-java-client:2.0.0"
 ```
+
 ### Others
+
 At first generate the JAR by executing:
+
 ```shell
 mvn clean package
 ```
+
 Then manually install the following JARs:
-* `target/signingToday-java-client-1.5.0.jar`
+
+* `target/signingToday-java-client-2.0.0.jar`
 * `target/lib/*.jar`
+
 ## Getting Started
+
 Please follow the [installation](#installation) instruction and execute the following Java code:
+
 ```java
+
 // Import classes:
 import signingToday.client.ApiClient;
 import signingToday.client.ApiException;
 import signingToday.client.Configuration;
 import signingToday.client.auth.*;
 import signingToday.client.models.*;
-import signingToday.client.api.Bit4idPathgroupIdentitiesApi;
+import signingToday.client.api.BackofficeApi;
+
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox.signingtoday.com/api/v1");
+    defaultClient.setBasePath("https://web.sandbox.signingtoday.com/api");
     
-    // Configure API key authorization: ApiKeyAuth
-    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
-    ApiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //ApiKeyAuth.setApiKeyPrefix("Token");
-    Bit4idPathgroupIdentitiesApi apiInstance = new Bit4idPathgroupIdentitiesApi(defaultClient);
-    String organizationId = api-demo; // String | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization 
-    Id identityId = new Id(); // Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
-    InlineObject inlineObject = new InlineObject(); // InlineObject | 
+    // Configure OAuth2 access token for authorization: OAuth2
+    OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+    OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    BackofficeApi apiInstance = new BackofficeApi(defaultClient);
+    String id = test_id; // String | The value of the unique id
     try {
-      InlineResponse2004 result = apiInstance.associateAppearance(organizationId, identityId, inlineObject);
+      AlfrescoSync result = apiInstance.organizationIdAlfrescoSyncGet(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling Bit4idPathgroupIdentitiesApi#associateAppearance");
+      System.err.println("Exception when calling BackofficeApi#organizationIdAlfrescoSyncGet");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -288,154 +112,251 @@ public class Example {
     }
   }
 }
+
 ```
+
 ## Documentation for API Endpoints
-All URIs are relative to *https://sandbox.signingtoday.com/api/v1*
+
+All URIs are relative to *https://web.sandbox.signingtoday.com/api*
+
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*Bit4idPathgroupIdentitiesApi* | [**associateAppearance**](docs/Bit4idPathgroupIdentitiesApi.md#associateAppearance) | **POST** /{organization-id}/identities/{identity-id}/appearance | Associate an appearance to an identity
-*Bit4idPathgroupIdentitiesApi* | [**associateIdentity**](docs/Bit4idPathgroupIdentitiesApi.md#associateIdentity) | **POST** /{organization-id}/users/{user-id}/wallet | Associate to an user an already existing identity
-*Bit4idPathgroupIdentitiesApi* | [**createTokenFromIdentity**](docs/Bit4idPathgroupIdentitiesApi.md#createTokenFromIdentity) | **POST** /{organization-id}/identities/create/token | Create an identity from token
-*Bit4idPathgroupIdentitiesApi* | [**deleteAppearance**](docs/Bit4idPathgroupIdentitiesApi.md#deleteAppearance) | **DELETE** /{organization-id}/identities/{identity-id}/appearance | Delete the appearance of an identity
-*Bit4idPathgroupIdentitiesApi* | [**deleteEnrollmentRequest**](docs/Bit4idPathgroupIdentitiesApi.md#deleteEnrollmentRequest) | **DELETE** /{organization-id}/identity-requests/{enrollment-id} | Delete an enrollment request
-*Bit4idPathgroupIdentitiesApi* | [**deleteIdentity**](docs/Bit4idPathgroupIdentitiesApi.md#deleteIdentity) | **DELETE** /{organization-id}/identities/{identity-id} | Delete an identity
-*Bit4idPathgroupIdentitiesApi* | [**getEnrollmentRequest**](docs/Bit4idPathgroupIdentitiesApi.md#getEnrollmentRequest) | **GET** /{organization-id}/identity-requests/{enrollment-id} | Get information about an enrollment request
-*Bit4idPathgroupIdentitiesApi* | [**getIdentity**](docs/Bit4idPathgroupIdentitiesApi.md#getIdentity) | **GET** /{organization-id}/identities/{identity-id} | Get information about an identity
-*Bit4idPathgroupIdentitiesApi* | [**listEnrollmentRequests**](docs/Bit4idPathgroupIdentitiesApi.md#listEnrollmentRequests) | **GET** /{organization-id}/identity-requests | Enumerate the enrollment requests of an organization
-*Bit4idPathgroupIdentitiesApi* | [**listIdentities**](docs/Bit4idPathgroupIdentitiesApi.md#listIdentities) | **GET** /{organization-id}/identities | Enumerate the identities of an organization
-*Bit4idPathgroupIdentitiesApi* | [**listUserEnrollments**](docs/Bit4idPathgroupIdentitiesApi.md#listUserEnrollments) | **GET** /{organization-id}/users/{user-id}/identity-requests | List the enrollments of an user
-*Bit4idPathgroupIdentitiesApi* | [**listUserIdentities**](docs/Bit4idPathgroupIdentitiesApi.md#listUserIdentities) | **GET** /{organization-id}/users/{user-id}/wallet | Enumerate the identities of an user
-*Bit4idPathgroupIdentitiesApi* | [**requestEnrollment**](docs/Bit4idPathgroupIdentitiesApi.md#requestEnrollment) | **POST** /{organization-id}/enroll | Submit an enrollment request
-*Bit4idPathgroupOrganizationsApi* | [**getOrganization**](docs/Bit4idPathgroupOrganizationsApi.md#getOrganization) | **GET** /organizations/{organization-id} | Get the settings of an oraganization
-*Bit4idPathgroupOrganizationsApi* | [**patchOrganization**](docs/Bit4idPathgroupOrganizationsApi.md#patchOrganization) | **PATCH** /organizations/{organization-id} | Edit the settings of an organization
-*Bit4idPathgroupSignatureTransactionsApi* | [**cancelDST**](docs/Bit4idPathgroupSignatureTransactionsApi.md#cancelDST) | **POST** /{organization-id}/signature-transactions/{dst-id}/cancel | Mark a DST as canceled
-*Bit4idPathgroupSignatureTransactionsApi* | [**createDST**](docs/Bit4idPathgroupSignatureTransactionsApi.md#createDST) | **POST** /{organization-id}/signature-transactions | Create a Digital Signature Transaction
-*Bit4idPathgroupSignatureTransactionsApi* | [**deleteDST**](docs/Bit4idPathgroupSignatureTransactionsApi.md#deleteDST) | **DELETE** /{organization-id}/signature-transactions/{dst-id} | Delete a Digital Signature Transaction
-*Bit4idPathgroupSignatureTransactionsApi* | [**getDST**](docs/Bit4idPathgroupSignatureTransactionsApi.md#getDST) | **GET** /{organization-id}/signature-transactions/{dst-id} | Get information about a DST
-*Bit4idPathgroupSignatureTransactionsApi* | [**getDocument**](docs/Bit4idPathgroupSignatureTransactionsApi.md#getDocument) | **GET** /{organization-id}/documents/{document-id}/download | Download a document from a DST
-*Bit4idPathgroupSignatureTransactionsApi* | [**listDSTs**](docs/Bit4idPathgroupSignatureTransactionsApi.md#listDSTs) | **GET** /{organization-id}/signature-transactions | List the DSTs of an organization
-*Bit4idPathgroupSignaturesApi* | [**createChannel**](docs/Bit4idPathgroupSignaturesApi.md#createChannel) | **POST** /{organization-id}/channels/{dst-id} | Create a channel
-*Bit4idPathgroupSignaturesApi* | [**declineDST**](docs/Bit4idPathgroupSignaturesApi.md#declineDST) | **POST** /{organization-id}/signatures/{signature-id}/decline | Decline a Digital Signature Transaction
-*Bit4idPathgroupSignaturesApi* | [**performDST**](docs/Bit4idPathgroupSignaturesApi.md#performDST) | **POST** /{organization-id}/signatures/{signature-id}/perform | Sign a DST with an automatic signer
-*Bit4idPathgroupSignaturesApi* | [**performSignature**](docs/Bit4idPathgroupSignaturesApi.md#performSignature) | **POST** /{organization-id}/signatures/{signature-id}/perform/{identity-id} | Perform a Signature
-*Bit4idPathgroupSignaturesApi* | [**performSignatureWithSession**](docs/Bit4idPathgroupSignaturesApi.md#performSignatureWithSession) | **POST** /{organization-id}/signatures/{signature-id}/session-perform | Perform a Signature with session
-*Bit4idPathgroupTokensApi* | [**createToken**](docs/Bit4idPathgroupTokensApi.md#createToken) | **POST** /{organization-id}/tokens | Create an application token
-*Bit4idPathgroupTokensApi* | [**deleteToken**](docs/Bit4idPathgroupTokensApi.md#deleteToken) | **DELETE** /{organization-id}/tokens/{token-id} | Delete a token of the organization
-*Bit4idPathgroupTokensApi* | [**getToken**](docs/Bit4idPathgroupTokensApi.md#getToken) | **GET** /{organization-id}/tokens/{token-id} | Get information about a token
-*Bit4idPathgroupTokensApi* | [**listTokens**](docs/Bit4idPathgroupTokensApi.md#listTokens) | **GET** /{organization-id}/tokens | Enumerate the tokens of an organization
-*Bit4idPathgroupTokensApi* | [**listUserTokens**](docs/Bit4idPathgroupTokensApi.md#listUserTokens) | **GET** /{organization-id}/users/{user-id}/tokens | Enumerate the tokens of an user
-*Bit4idPathgroupTokensApi* | [**updateToken**](docs/Bit4idPathgroupTokensApi.md#updateToken) | **PUT** /{organization-id}/tokens/{token-id} | Update the properties of a token
-*Bit4idPathgroupUsersApi* | [**createUser**](docs/Bit4idPathgroupUsersApi.md#createUser) | **POST** /{organization-id}/users | Create a user of the organization
-*Bit4idPathgroupUsersApi* | [**getUser**](docs/Bit4idPathgroupUsersApi.md#getUser) | **GET** /{organization-id}/users/{user-id} | Get information about an user
-*Bit4idPathgroupUsersApi* | [**listUsers**](docs/Bit4idPathgroupUsersApi.md#listUsers) | **GET** /{organization-id}/users | Enumerate the users of an organization
-*Bit4idPathgroupUsersApi* | [**updateUser**](docs/Bit4idPathgroupUsersApi.md#updateUser) | **PUT** /{organization-id}/users/{user-id} | Edit one or more user properties
-*IdentitiesApi* | [**associateAppearance**](docs/IdentitiesApi.md#associateAppearance) | **POST** /{organization-id}/identities/{identity-id}/appearance | Associate an appearance to an identity
-*IdentitiesApi* | [**associateIdentity**](docs/IdentitiesApi.md#associateIdentity) | **POST** /{organization-id}/users/{user-id}/wallet | Associate to an user an already existing identity
-*IdentitiesApi* | [**createTokenFromIdentity**](docs/IdentitiesApi.md#createTokenFromIdentity) | **POST** /{organization-id}/identities/create/token | Create an identity from token
-*IdentitiesApi* | [**deleteAppearance**](docs/IdentitiesApi.md#deleteAppearance) | **DELETE** /{organization-id}/identities/{identity-id}/appearance | Delete the appearance of an identity
-*IdentitiesApi* | [**deleteEnrollmentRequest**](docs/IdentitiesApi.md#deleteEnrollmentRequest) | **DELETE** /{organization-id}/identity-requests/{enrollment-id} | Delete an enrollment request
-*IdentitiesApi* | [**deleteIdentity**](docs/IdentitiesApi.md#deleteIdentity) | **DELETE** /{organization-id}/identities/{identity-id} | Delete an identity
-*IdentitiesApi* | [**getEnrollmentRequest**](docs/IdentitiesApi.md#getEnrollmentRequest) | **GET** /{organization-id}/identity-requests/{enrollment-id} | Get information about an enrollment request
-*IdentitiesApi* | [**getIdentity**](docs/IdentitiesApi.md#getIdentity) | **GET** /{organization-id}/identities/{identity-id} | Get information about an identity
-*IdentitiesApi* | [**listEnrollmentRequests**](docs/IdentitiesApi.md#listEnrollmentRequests) | **GET** /{organization-id}/identity-requests | Enumerate the enrollment requests of an organization
-*IdentitiesApi* | [**listIdentities**](docs/IdentitiesApi.md#listIdentities) | **GET** /{organization-id}/identities | Enumerate the identities of an organization
-*IdentitiesApi* | [**listUserEnrollments**](docs/IdentitiesApi.md#listUserEnrollments) | **GET** /{organization-id}/users/{user-id}/identity-requests | List the enrollments of an user
-*IdentitiesApi* | [**listUserIdentities**](docs/IdentitiesApi.md#listUserIdentities) | **GET** /{organization-id}/users/{user-id}/wallet | Enumerate the identities of an user
-*IdentitiesApi* | [**requestEnrollment**](docs/IdentitiesApi.md#requestEnrollment) | **POST** /{organization-id}/enroll | Submit an enrollment request
-*OrganizationsApi* | [**getOrganization**](docs/OrganizationsApi.md#getOrganization) | **GET** /organizations/{organization-id} | Get the settings of an oraganization
-*OrganizationsApi* | [**patchOrganization**](docs/OrganizationsApi.md#patchOrganization) | **PATCH** /organizations/{organization-id} | Edit the settings of an organization
-*SignatureTransactionsApi* | [**cancelDST**](docs/SignatureTransactionsApi.md#cancelDST) | **POST** /{organization-id}/signature-transactions/{dst-id}/cancel | Mark a DST as canceled
-*SignatureTransactionsApi* | [**createDST**](docs/SignatureTransactionsApi.md#createDST) | **POST** /{organization-id}/signature-transactions | Create a Digital Signature Transaction
-*SignatureTransactionsApi* | [**deleteDST**](docs/SignatureTransactionsApi.md#deleteDST) | **DELETE** /{organization-id}/signature-transactions/{dst-id} | Delete a Digital Signature Transaction
-*SignatureTransactionsApi* | [**getDST**](docs/SignatureTransactionsApi.md#getDST) | **GET** /{organization-id}/signature-transactions/{dst-id} | Get information about a DST
-*SignatureTransactionsApi* | [**getDocument**](docs/SignatureTransactionsApi.md#getDocument) | **GET** /{organization-id}/documents/{document-id}/download | Download a document from a DST
-*SignatureTransactionsApi* | [**listDSTs**](docs/SignatureTransactionsApi.md#listDSTs) | **GET** /{organization-id}/signature-transactions | List the DSTs of an organization
-*SignaturesApi* | [**createChannel**](docs/SignaturesApi.md#createChannel) | **POST** /{organization-id}/channels/{dst-id} | Create a channel
-*SignaturesApi* | [**declineDST**](docs/SignaturesApi.md#declineDST) | **POST** /{organization-id}/signatures/{signature-id}/decline | Decline a Digital Signature Transaction
-*SignaturesApi* | [**performDST**](docs/SignaturesApi.md#performDST) | **POST** /{organization-id}/signatures/{signature-id}/perform | Sign a DST with an automatic signer
-*SignaturesApi* | [**performSignature**](docs/SignaturesApi.md#performSignature) | **POST** /{organization-id}/signatures/{signature-id}/perform/{identity-id} | Perform a Signature
-*SignaturesApi* | [**performSignatureWithSession**](docs/SignaturesApi.md#performSignatureWithSession) | **POST** /{organization-id}/signatures/{signature-id}/session-perform | Perform a Signature with session
-*TokensApi* | [**createToken**](docs/TokensApi.md#createToken) | **POST** /{organization-id}/tokens | Create an application token
-*TokensApi* | [**deleteToken**](docs/TokensApi.md#deleteToken) | **DELETE** /{organization-id}/tokens/{token-id} | Delete a token of the organization
-*TokensApi* | [**getToken**](docs/TokensApi.md#getToken) | **GET** /{organization-id}/tokens/{token-id} | Get information about a token
-*TokensApi* | [**listTokens**](docs/TokensApi.md#listTokens) | **GET** /{organization-id}/tokens | Enumerate the tokens of an organization
-*TokensApi* | [**listUserTokens**](docs/TokensApi.md#listUserTokens) | **GET** /{organization-id}/users/{user-id}/tokens | Enumerate the tokens of an user
-*TokensApi* | [**updateToken**](docs/TokensApi.md#updateToken) | **PUT** /{organization-id}/tokens/{token-id} | Update the properties of a token
-*UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /{organization-id}/users | Create a user of the organization
-*UsersApi* | [**getUser**](docs/UsersApi.md#getUser) | **GET** /{organization-id}/users/{user-id} | Get information about an user
-*UsersApi* | [**listUsers**](docs/UsersApi.md#listUsers) | **GET** /{organization-id}/users | Enumerate the users of an organization
-*UsersApi* | [**updateUser**](docs/UsersApi.md#updateUser) | **PUT** /{organization-id}/users/{user-id} | Edit one or more user properties
+*BackofficeApi* | [**organizationIdAlfrescoSyncGet**](docs/BackofficeApi.md#organizationIdAlfrescoSyncGet) | **GET** /organization/{id}/alfrescoSync | Sync all completed DSTs on Alfresco
+*BackofficeApi* | [**organizationIdAlfrescoSyncPost**](docs/BackofficeApi.md#organizationIdAlfrescoSyncPost) | **POST** /organization/{id}/alfrescoSync | Sync all completed DSTs on Alfresco
+*BackofficeApi* | [**organizationIdDelete**](docs/BackofficeApi.md#organizationIdDelete) | **DELETE** /organization/{id} | Enable or disable an Organization account.
+*BackofficeApi* | [**organizationIdGet**](docs/BackofficeApi.md#organizationIdGet) | **GET** /organization/{id} | Retrieve info on one organization
+*BackofficeApi* | [**organizationIdPublicGet**](docs/BackofficeApi.md#organizationIdPublicGet) | **GET** /organization/public | Retrieve public resources
+*BackofficeApi* | [**organizationIdPut**](docs/BackofficeApi.md#organizationIdPut) | **PUT** /organization/{id} | Update info on one organization
+*BackofficeApi* | [**organizationIdResourceGet**](docs/BackofficeApi.md#organizationIdResourceGet) | **GET** /organization/{id}/resource | Get an organization resource
+*BackofficeApi* | [**organizationIdResourcePut**](docs/BackofficeApi.md#organizationIdResourcePut) | **PUT** /organization/{id}/resource | Create or overwrite an organization resource
+*BackofficeApi* | [**organizationResourceIdDelete**](docs/BackofficeApi.md#organizationResourceIdDelete) | **DELETE** /organization/{id}/resource | Delete an organization resource
+*BackofficeApi* | [**organizationResourcesGet**](docs/BackofficeApi.md#organizationResourcesGet) | **GET** /organization/{id}/resources | List all the organization resources
+*BackofficeApi* | [**organizationTagsGet**](docs/BackofficeApi.md#organizationTagsGet) | **GET** /organization/tags | Retrieve organization tags
+*BackofficeApi* | [**organizationsGet**](docs/BackofficeApi.md#organizationsGet) | **GET** /organizations | Get the list of organizations
+*BackofficeApi* | [**organizationsPost**](docs/BackofficeApi.md#organizationsPost) | **POST** /organizations | Create a new organization
+*Bit4idPathgroupDevicesApi* | [**deviceAuthorizationDelete**](docs/Bit4idPathgroupDevicesApi.md#deviceAuthorizationDelete) | **DELETE** /device/authorization | Clear a trusted device
+*Bit4idPathgroupDevicesApi* | [**deviceAuthorizationGet**](docs/Bit4idPathgroupDevicesApi.md#deviceAuthorizationGet) | **GET** /device/authorization | Retrieve a challenge for authorizing a new trusted device
+*Bit4idPathgroupDevicesApi* | [**deviceAuthorizationPost**](docs/Bit4idPathgroupDevicesApi.md#deviceAuthorizationPost) | **POST** /device/authorization | Register a new trusted device
+*Bit4idPathgroupDevicesApi* | [**devicesGet**](docs/Bit4idPathgroupDevicesApi.md#devicesGet) | **GET** /devices | Get the list of trusted devices
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdAuditGet**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdAuditGet) | **GET** /DST/{id}/audit | Retrieve the audit records associated to the DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdDelete**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdDelete) | **DELETE** /DST/{id} | Delete a DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdFillPatch**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdFillPatch) | **PATCH** /DST/{id}/fill | Fill a form of a DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdGet**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdGet) | **GET** /DST/{id} | Retrieve a DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdInstantiatePost**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdInstantiatePost) | **POST** /DST/{id}/instantiate | Instantiate a DST from a template
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdModifyPost**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdModifyPost) | **POST** /DST/{id}/modify | Modify a published DST template
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdNotifyPost**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdNotifyPost) | **POST** /DST/{id}/notify | Send notifications for a DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdPublishPost**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdPublishPost) | **POST** /DST/{id}/publish | Publish a DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdPut**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdPut) | **PUT** /DST/{id} | Update a DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdReplacePost**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdReplacePost) | **POST** /DST/{id}/replace | Replace a rejected DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdSignDocIdSignIdGet**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdSignDocIdSignIdGet) | **GET** /DST/{id}/sign/{docId}/{signId} | Return the address for signing
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTIdTemplatizePost**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTIdTemplatizePost) | **POST** /DST/{id}/templatize | Create a template from a DST
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTsGet**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTsGet) | **GET** /DSTs | Retrieve DSTs
+*Bit4idPathgroupDigitalSignatureTransactionsApi* | [**dSTsPost**](docs/Bit4idPathgroupDigitalSignatureTransactionsApi.md#dSTsPost) | **POST** /DSTs | Create a new DST
+*Bit4idPathgroupDstNoteApi* | [**dSTIdNoteGet**](docs/Bit4idPathgroupDstNoteApi.md#dSTIdNoteGet) | **GET** /DST/{id}/note | Retrieve the DSTNotes associated to the DST
+*Bit4idPathgroupDstNoteApi* | [**dSTIdNoteNoteIdDelete**](docs/Bit4idPathgroupDstNoteApi.md#dSTIdNoteNoteIdDelete) | **DELETE** /DST/{id}/note/{noteId} | Delete a DSTNote
+*Bit4idPathgroupDstNoteApi* | [**dSTIdNoteNoteIdPut**](docs/Bit4idPathgroupDstNoteApi.md#dSTIdNoteNoteIdPut) | **PUT** /DST/{id}/note/{noteId} | Edit a DSTNote
+*Bit4idPathgroupDstNoteApi* | [**dSTIdNotePost**](docs/Bit4idPathgroupDstNoteApi.md#dSTIdNotePost) | **POST** /DST/{id}/note | Append a new DSTNote
+*Bit4idPathgroupNotificationsApi* | [**notificationsDstIdDelete**](docs/Bit4idPathgroupNotificationsApi.md#notificationsDstIdDelete) | **DELETE** /notifications/dst/{id} | Clear Notifications for a DST
+*Bit4idPathgroupNotificationsApi* | [**notificationsDstsGet**](docs/Bit4idPathgroupNotificationsApi.md#notificationsDstsGet) | **GET** /notifications/dsts | Get latest DST Notifications
+*Bit4idPathgroupNotificationsApi* | [**notificationsPushTokenDelete**](docs/Bit4idPathgroupNotificationsApi.md#notificationsPushTokenDelete) | **DELETE** /notifications/push-token | Clear a registered push notification token
+*Bit4idPathgroupNotificationsApi* | [**notificationsPushTokenPost**](docs/Bit4idPathgroupNotificationsApi.md#notificationsPushTokenPost) | **POST** /notifications/push-token | Register a token for push notifications
+*Bit4idPathgroupResourcesApi* | [**dSTIdResourcesGet**](docs/Bit4idPathgroupResourcesApi.md#dSTIdResourcesGet) | **GET** /DST/{id}/resources | Retrieve all resources associated to a DST
+*Bit4idPathgroupResourcesApi* | [**dSTIdResourcesPatch**](docs/Bit4idPathgroupResourcesApi.md#dSTIdResourcesPatch) | **PATCH** /DST/{id}/resources | Append a new resource to a DST
+*Bit4idPathgroupResourcesApi* | [**dSTResourceIdDelete**](docs/Bit4idPathgroupResourcesApi.md#dSTResourceIdDelete) | **DELETE** /DST/resource/{id} | Delete a Resource
+*Bit4idPathgroupResourcesApi* | [**resourceIdGet**](docs/Bit4idPathgroupResourcesApi.md#resourceIdGet) | **GET** /resource/{id} | Retrieve a Resource
+*Bit4idPathgroupResourcesApi* | [**resourceIdPut**](docs/Bit4idPathgroupResourcesApi.md#resourceIdPut) | **PUT** /resource/{id} | Update a Resource
+*Bit4idPathgroupResourcesApi* | [**userIdIdentityIdentityIdAppearanceDelete**](docs/Bit4idPathgroupResourcesApi.md#userIdIdentityIdentityIdAppearanceDelete) | **DELETE** /user/{id}/identity/{identity-id}/appearance | Delete a user appearance resource.
+*Bit4idPathgroupResourcesApi* | [**userIdIdentityIdentityIdAppearanceGet**](docs/Bit4idPathgroupResourcesApi.md#userIdIdentityIdentityIdAppearanceGet) | **GET** /user/{id}/identity/{identity-id}/appearance | Download an identity appearance resource
+*Bit4idPathgroupResourcesApi* | [**userIdIdentityIdentityIdAppearancePost**](docs/Bit4idPathgroupResourcesApi.md#userIdIdentityIdentityIdAppearancePost) | **POST** /user/{id}/identity/{identity-id}/appearance | Add a graphical appearance to a user&#39;s identity
+*Bit4idPathgroupRobotsApi* | [**robotAuthenticationDelete**](docs/Bit4idPathgroupRobotsApi.md#robotAuthenticationDelete) | **DELETE** /robot/authentication | Clear a Robot authentication lifetime token
+*Bit4idPathgroupRobotsApi* | [**robotAuthenticationGet**](docs/Bit4idPathgroupRobotsApi.md#robotAuthenticationGet) | **GET** /robot/authentication | Retrieve the Robot authentication lifetime token
+*Bit4idPathgroupRobotsApi* | [**robotConfigurationGet**](docs/Bit4idPathgroupRobotsApi.md#robotConfigurationGet) | **GET** /robot/configuration | Retrieve the Robot configuration
+*Bit4idPathgroupRobotsApi* | [**robotConfigurationPut**](docs/Bit4idPathgroupRobotsApi.md#robotConfigurationPut) | **PUT** /robot/configuration | Edit the Robot configuration
+*Bit4idPathgroupRobotsApi* | [**robotDSTsPost**](docs/Bit4idPathgroupRobotsApi.md#robotDSTsPost) | **POST** /robot/DSTs | Create a new DST in one call
+*Bit4idPathgroupRobotsApi* | [**robotIdInstantiatePost**](docs/Bit4idPathgroupRobotsApi.md#robotIdInstantiatePost) | **POST** /robot/{id}/instantiate | Instantiate a DST from a template by robot
+*Bit4idPathgroupServicesApi* | [**authChangePasswordPost**](docs/Bit4idPathgroupServicesApi.md#authChangePasswordPost) | **POST** /auth/changePassword | Consume a token to change the password
+*Bit4idPathgroupServicesApi* | [**authPasswordLostGet**](docs/Bit4idPathgroupServicesApi.md#authPasswordLostGet) | **GET** /auth/passwordLost | Request to recover own password
+*Bit4idPathgroupServicesApi* | [**authPasswordResetGet**](docs/Bit4idPathgroupServicesApi.md#authPasswordResetGet) | **GET** /auth/passwordReset | Reset a user password with superuser
+*Bit4idPathgroupServicesApi* | [**authPasswordResetPost**](docs/Bit4idPathgroupServicesApi.md#authPasswordResetPost) | **POST** /auth/passwordReset | Reset your own password
+*Bit4idPathgroupServicesApi* | [**authPasswordTokenGet**](docs/Bit4idPathgroupServicesApi.md#authPasswordTokenGet) | **GET** /auth/passwordToken | Get token to change password
+*Bit4idPathgroupServicesApi* | [**authSamlPost**](docs/Bit4idPathgroupServicesApi.md#authSamlPost) | **POST** /auth/saml | Register or Update a SAML user
+*Bit4idPathgroupServicesApi* | [**authUser**](docs/Bit4idPathgroupServicesApi.md#authUser) | **GET** /auth/user | Return the current logged in user
+*Bit4idPathgroupServicesApi* | [**configurationGet**](docs/Bit4idPathgroupServicesApi.md#configurationGet) | **GET** /service/configuration | Retrieve the App configuration
+*Bit4idPathgroupServicesApi* | [**logoutUser**](docs/Bit4idPathgroupServicesApi.md#logoutUser) | **GET** /auth/logout | Log out current user terminating the session
+*Bit4idPathgroupServicesApi* | [**oauthTokenPost**](docs/Bit4idPathgroupServicesApi.md#oauthTokenPost) | **POST** /oauth/token | Get the bearer token
+*Bit4idPathgroupServicesApi* | [**pdfResourceIdThumbsGet**](docs/Bit4idPathgroupServicesApi.md#pdfResourceIdThumbsGet) | **GET** /pdfResource/{id}/thumbs | Retrieve a Resource (of service)
+*Bit4idPathgroupServicesApi* | [**serviceChangePasswordPost**](docs/Bit4idPathgroupServicesApi.md#serviceChangePasswordPost) | **POST** /service/changePassword | Change the password of a service user
+*Bit4idPathgroupServicesApi* | [**serviceUsersSyncPost**](docs/Bit4idPathgroupServicesApi.md#serviceUsersSyncPost) | **POST** /service/users/sync | Sync user accounts
+*Bit4idPathgroupUsersApi* | [**userIdDelete**](docs/Bit4idPathgroupUsersApi.md#userIdDelete) | **DELETE** /user/{id} | Enable or disable a User
+*Bit4idPathgroupUsersApi* | [**userIdGet**](docs/Bit4idPathgroupUsersApi.md#userIdGet) | **GET** /user/{id} | Retrieve a User
+*Bit4idPathgroupUsersApi* | [**userIdIdentitiesGet**](docs/Bit4idPathgroupUsersApi.md#userIdIdentitiesGet) | **GET** /user/{id}/identities | Retrieve User identities
+*Bit4idPathgroupUsersApi* | [**userIdPut**](docs/Bit4idPathgroupUsersApi.md#userIdPut) | **PUT** /user/{id} | Update a User
+*Bit4idPathgroupUsersApi* | [**userIdRolePut**](docs/Bit4idPathgroupUsersApi.md#userIdRolePut) | **PUT** /user/{id}/role | Change the User role
+*Bit4idPathgroupUsersApi* | [**usersGet**](docs/Bit4idPathgroupUsersApi.md#usersGet) | **GET** /users | Retrieve Users
+*Bit4idPathgroupUsersApi* | [**usersGroupsGet**](docs/Bit4idPathgroupUsersApi.md#usersGroupsGet) | **GET** /users/groups | Retrieve UserGroups
+*Bit4idPathgroupUsersApi* | [**usersGroupsPost**](docs/Bit4idPathgroupUsersApi.md#usersGroupsPost) | **POST** /users/groups | Create a new UserGroups
+*Bit4idPathgroupUsersApi* | [**usersPost**](docs/Bit4idPathgroupUsersApi.md#usersPost) | **POST** /users | Create a new User
+*DevicesApi* | [**deviceAuthorizationDelete**](docs/DevicesApi.md#deviceAuthorizationDelete) | **DELETE** /device/authorization | Clear a trusted device
+*DevicesApi* | [**deviceAuthorizationGet**](docs/DevicesApi.md#deviceAuthorizationGet) | **GET** /device/authorization | Retrieve a challenge for authorizing a new trusted device
+*DevicesApi* | [**deviceAuthorizationPost**](docs/DevicesApi.md#deviceAuthorizationPost) | **POST** /device/authorization | Register a new trusted device
+*DevicesApi* | [**devicesGet**](docs/DevicesApi.md#devicesGet) | **GET** /devices | Get the list of trusted devices
+*DigitalSignatureTransactionsApi* | [**dSTIdAuditGet**](docs/DigitalSignatureTransactionsApi.md#dSTIdAuditGet) | **GET** /DST/{id}/audit | Retrieve the audit records associated to the DST
+*DigitalSignatureTransactionsApi* | [**dSTIdDelete**](docs/DigitalSignatureTransactionsApi.md#dSTIdDelete) | **DELETE** /DST/{id} | Delete a DST
+*DigitalSignatureTransactionsApi* | [**dSTIdFillPatch**](docs/DigitalSignatureTransactionsApi.md#dSTIdFillPatch) | **PATCH** /DST/{id}/fill | Fill a form of a DST
+*DigitalSignatureTransactionsApi* | [**dSTIdGet**](docs/DigitalSignatureTransactionsApi.md#dSTIdGet) | **GET** /DST/{id} | Retrieve a DST
+*DigitalSignatureTransactionsApi* | [**dSTIdInstantiatePost**](docs/DigitalSignatureTransactionsApi.md#dSTIdInstantiatePost) | **POST** /DST/{id}/instantiate | Instantiate a DST from a template
+*DigitalSignatureTransactionsApi* | [**dSTIdModifyPost**](docs/DigitalSignatureTransactionsApi.md#dSTIdModifyPost) | **POST** /DST/{id}/modify | Modify a published DST template
+*DigitalSignatureTransactionsApi* | [**dSTIdNotifyPost**](docs/DigitalSignatureTransactionsApi.md#dSTIdNotifyPost) | **POST** /DST/{id}/notify | Send notifications for a DST
+*DigitalSignatureTransactionsApi* | [**dSTIdPublishPost**](docs/DigitalSignatureTransactionsApi.md#dSTIdPublishPost) | **POST** /DST/{id}/publish | Publish a DST
+*DigitalSignatureTransactionsApi* | [**dSTIdPut**](docs/DigitalSignatureTransactionsApi.md#dSTIdPut) | **PUT** /DST/{id} | Update a DST
+*DigitalSignatureTransactionsApi* | [**dSTIdReplacePost**](docs/DigitalSignatureTransactionsApi.md#dSTIdReplacePost) | **POST** /DST/{id}/replace | Replace a rejected DST
+*DigitalSignatureTransactionsApi* | [**dSTIdSignDocIdSignIdGet**](docs/DigitalSignatureTransactionsApi.md#dSTIdSignDocIdSignIdGet) | **GET** /DST/{id}/sign/{docId}/{signId} | Return the address for signing
+*DigitalSignatureTransactionsApi* | [**dSTIdTemplatizePost**](docs/DigitalSignatureTransactionsApi.md#dSTIdTemplatizePost) | **POST** /DST/{id}/templatize | Create a template from a DST
+*DigitalSignatureTransactionsApi* | [**dSTsGet**](docs/DigitalSignatureTransactionsApi.md#dSTsGet) | **GET** /DSTs | Retrieve DSTs
+*DigitalSignatureTransactionsApi* | [**dSTsPost**](docs/DigitalSignatureTransactionsApi.md#dSTsPost) | **POST** /DSTs | Create a new DST
+*DstNoteApi* | [**dSTIdNoteGet**](docs/DstNoteApi.md#dSTIdNoteGet) | **GET** /DST/{id}/note | Retrieve the DSTNotes associated to the DST
+*DstNoteApi* | [**dSTIdNoteNoteIdDelete**](docs/DstNoteApi.md#dSTIdNoteNoteIdDelete) | **DELETE** /DST/{id}/note/{noteId} | Delete a DSTNote
+*DstNoteApi* | [**dSTIdNoteNoteIdPut**](docs/DstNoteApi.md#dSTIdNoteNoteIdPut) | **PUT** /DST/{id}/note/{noteId} | Edit a DSTNote
+*DstNoteApi* | [**dSTIdNotePost**](docs/DstNoteApi.md#dSTIdNotePost) | **POST** /DST/{id}/note | Append a new DSTNote
+*NotificationsApi* | [**notificationsDstIdDelete**](docs/NotificationsApi.md#notificationsDstIdDelete) | **DELETE** /notifications/dst/{id} | Clear Notifications for a DST
+*NotificationsApi* | [**notificationsDstsGet**](docs/NotificationsApi.md#notificationsDstsGet) | **GET** /notifications/dsts | Get latest DST Notifications
+*NotificationsApi* | [**notificationsPushTokenDelete**](docs/NotificationsApi.md#notificationsPushTokenDelete) | **DELETE** /notifications/push-token | Clear a registered push notification token
+*NotificationsApi* | [**notificationsPushTokenPost**](docs/NotificationsApi.md#notificationsPushTokenPost) | **POST** /notifications/push-token | Register a token for push notifications
+*ResourcesApi* | [**dSTIdResourcesGet**](docs/ResourcesApi.md#dSTIdResourcesGet) | **GET** /DST/{id}/resources | Retrieve all resources associated to a DST
+*ResourcesApi* | [**dSTIdResourcesPatch**](docs/ResourcesApi.md#dSTIdResourcesPatch) | **PATCH** /DST/{id}/resources | Append a new resource to a DST
+*ResourcesApi* | [**dSTResourceIdDelete**](docs/ResourcesApi.md#dSTResourceIdDelete) | **DELETE** /DST/resource/{id} | Delete a Resource
+*ResourcesApi* | [**resourceIdGet**](docs/ResourcesApi.md#resourceIdGet) | **GET** /resource/{id} | Retrieve a Resource
+*ResourcesApi* | [**resourceIdPut**](docs/ResourcesApi.md#resourceIdPut) | **PUT** /resource/{id} | Update a Resource
+*ResourcesApi* | [**userIdIdentityIdentityIdAppearanceDelete**](docs/ResourcesApi.md#userIdIdentityIdentityIdAppearanceDelete) | **DELETE** /user/{id}/identity/{identity-id}/appearance | Delete a user appearance resource.
+*ResourcesApi* | [**userIdIdentityIdentityIdAppearanceGet**](docs/ResourcesApi.md#userIdIdentityIdentityIdAppearanceGet) | **GET** /user/{id}/identity/{identity-id}/appearance | Download an identity appearance resource
+*ResourcesApi* | [**userIdIdentityIdentityIdAppearancePost**](docs/ResourcesApi.md#userIdIdentityIdentityIdAppearancePost) | **POST** /user/{id}/identity/{identity-id}/appearance | Add a graphical appearance to a user&#39;s identity
+*RobotApi* | [**robotConfigurationPut**](docs/RobotApi.md#robotConfigurationPut) | **PUT** /robot/configuration | Edit the Robot configuration
+*RobotsApi* | [**robotAuthenticationDelete**](docs/RobotsApi.md#robotAuthenticationDelete) | **DELETE** /robot/authentication | Clear a Robot authentication lifetime token
+*RobotsApi* | [**robotAuthenticationGet**](docs/RobotsApi.md#robotAuthenticationGet) | **GET** /robot/authentication | Retrieve the Robot authentication lifetime token
+*RobotsApi* | [**robotConfigurationGet**](docs/RobotsApi.md#robotConfigurationGet) | **GET** /robot/configuration | Retrieve the Robot configuration
+*RobotsApi* | [**robotDSTsPost**](docs/RobotsApi.md#robotDSTsPost) | **POST** /robot/DSTs | Create a new DST in one call
+*RobotsApi* | [**robotIdInstantiatePost**](docs/RobotsApi.md#robotIdInstantiatePost) | **POST** /robot/{id}/instantiate | Instantiate a DST from a template by robot
+*ServicesApi* | [**authChangePasswordPost**](docs/ServicesApi.md#authChangePasswordPost) | **POST** /auth/changePassword | Consume a token to change the password
+*ServicesApi* | [**authPasswordLostGet**](docs/ServicesApi.md#authPasswordLostGet) | **GET** /auth/passwordLost | Request to recover own password
+*ServicesApi* | [**authPasswordResetGet**](docs/ServicesApi.md#authPasswordResetGet) | **GET** /auth/passwordReset | Reset a user password with superuser
+*ServicesApi* | [**authPasswordResetPost**](docs/ServicesApi.md#authPasswordResetPost) | **POST** /auth/passwordReset | Reset your own password
+*ServicesApi* | [**authPasswordTokenGet**](docs/ServicesApi.md#authPasswordTokenGet) | **GET** /auth/passwordToken | Get token to change password
+*ServicesApi* | [**authSamlPost**](docs/ServicesApi.md#authSamlPost) | **POST** /auth/saml | Register or Update a SAML user
+*ServicesApi* | [**authUser**](docs/ServicesApi.md#authUser) | **GET** /auth/user | Return the current logged in user
+*ServicesApi* | [**configurationGet**](docs/ServicesApi.md#configurationGet) | **GET** /service/configuration | Retrieve the App configuration
+*ServicesApi* | [**logoutUser**](docs/ServicesApi.md#logoutUser) | **GET** /auth/logout | Log out current user terminating the session
+*ServicesApi* | [**oauthTokenPost**](docs/ServicesApi.md#oauthTokenPost) | **POST** /oauth/token | Get the bearer token
+*ServicesApi* | [**pdfResourceIdThumbsGet**](docs/ServicesApi.md#pdfResourceIdThumbsGet) | **GET** /pdfResource/{id}/thumbs | Retrieve a Resource (of service)
+*ServicesApi* | [**serviceChangePasswordPost**](docs/ServicesApi.md#serviceChangePasswordPost) | **POST** /service/changePassword | Change the password of a service user
+*ServicesApi* | [**serviceUsersSyncPost**](docs/ServicesApi.md#serviceUsersSyncPost) | **POST** /service/users/sync | Sync user accounts
+*SigningServicesApi* | [**signServiceOpen**](docs/SigningServicesApi.md#signServiceOpen) | **POST** /sign-service/open | sign-service open post
+*SigningServicesApi* | [**signServiceOpenId**](docs/SigningServicesApi.md#signServiceOpenId) | **POST** /sign-service/open/{transaction-id} | sign-service-open-transaction-id post
+*SigningServicesApi* | [**signatureIdPerformIdPost**](docs/SigningServicesApi.md#signatureIdPerformIdPost) | **POST** /sign-service/{signature-id}/perform/{identity-id} | sign-service-signature-id-perform-identity-id post
+*UsersApi* | [**userIdDelete**](docs/UsersApi.md#userIdDelete) | **DELETE** /user/{id} | Enable or disable a User
+*UsersApi* | [**userIdGet**](docs/UsersApi.md#userIdGet) | **GET** /user/{id} | Retrieve a User
+*UsersApi* | [**userIdIdentitiesGet**](docs/UsersApi.md#userIdIdentitiesGet) | **GET** /user/{id}/identities | Retrieve User identities
+*UsersApi* | [**userIdPut**](docs/UsersApi.md#userIdPut) | **PUT** /user/{id} | Update a User
+*UsersApi* | [**userIdRolePut**](docs/UsersApi.md#userIdRolePut) | **PUT** /user/{id}/role | Change the User role
+*UsersApi* | [**usersGet**](docs/UsersApi.md#usersGet) | **GET** /users | Retrieve Users
+*UsersApi* | [**usersGroupsGet**](docs/UsersApi.md#usersGroupsGet) | **GET** /users/groups | Retrieve UserGroups
+*UsersApi* | [**usersGroupsPost**](docs/UsersApi.md#usersGroupsPost) | **POST** /users/groups | Create a new UserGroups
+*UsersApi* | [**usersPost**](docs/UsersApi.md#usersPost) | **POST** /users | Create a new User
+
+
 ## Documentation for Models
- - [AutomaticSignature](docs/AutomaticSignature.md)
- - [CreateIdentitybyToken](docs/CreateIdentitybyToken.md)
- - [CreateSignatureTransaction](docs/CreateSignatureTransaction.md)
- - [CreateToken](docs/CreateToken.md)
- - [CreateTokenHttpOptions](docs/CreateTokenHttpOptions.md)
- - [CreateTokenWebhooks](docs/CreateTokenWebhooks.md)
- - [CreateUser](docs/CreateUser.md)
+
+ - [AlfrescoSync](docs/AlfrescoSync.md)
+ - [AuditRecord](docs/AuditRecord.md)
+ - [AuthCredential](docs/AuthCredential.md)
+ - [CreateDigitalSignatureTransaction](docs/CreateDigitalSignatureTransaction.md)
+ - [CreateDocument](docs/CreateDocument.md)
+ - [CreateDocumentResource](docs/CreateDocumentResource.md)
+ - [CreateDocumentSource](docs/CreateDocumentSource.md)
+ - [CreateUserRequest](docs/CreateUserRequest.md)
+ - [DSTNote](docs/DSTNote.md)
+ - [DSTSigningAddressResponse](docs/DSTSigningAddressResponse.md)
+ - [DSTStatusChangedNotification](docs/DSTStatusChangedNotification.md)
+ - [DSTsGetResponse](docs/DSTsGetResponse.md)
+ - [DeviceAuthorizationResponse](docs/DeviceAuthorizationResponse.md)
+ - [DigitalSignatureTransaction](docs/DigitalSignatureTransaction.md)
  - [Document](docs/Document.md)
- - [Document1](docs/Document1.md)
+ - [ErrorResponse](docs/ErrorResponse.md)
+ - [FillableForm](docs/FillableForm.md)
  - [Identity](docs/Identity.md)
- - [IdentityActions](docs/IdentityActions.md)
- - [IdentityAssociation](docs/IdentityAssociation.md)
- - [IdentityEnroll](docs/IdentityEnroll.md)
- - [IdentityEnrollActions](docs/IdentityEnrollActions.md)
- - [IdentityRequest](docs/IdentityRequest.md)
+ - [IdentityProviderData](docs/IdentityProviderData.md)
+ - [IdentityProviderDataTokenInfo](docs/IdentityProviderDataTokenInfo.md)
  - [InlineObject](docs/InlineObject.md)
  - [InlineObject1](docs/InlineObject1.md)
  - [InlineObject2](docs/InlineObject2.md)
  - [InlineObject3](docs/InlineObject3.md)
  - [InlineObject4](docs/InlineObject4.md)
+ - [InlineObject5](docs/InlineObject5.md)
+ - [InlineObject6](docs/InlineObject6.md)
+ - [InlineObject7](docs/InlineObject7.md)
+ - [InlineObject8](docs/InlineObject8.md)
+ - [InlineObject9](docs/InlineObject9.md)
  - [InlineResponse200](docs/InlineResponse200.md)
- - [InlineResponse2001](docs/InlineResponse2001.md)
- - [InlineResponse20010](docs/InlineResponse20010.md)
- - [InlineResponse20010Data](docs/InlineResponse20010Data.md)
- - [InlineResponse20011](docs/InlineResponse20011.md)
- - [InlineResponse20012](docs/InlineResponse20012.md)
- - [InlineResponse2002](docs/InlineResponse2002.md)
- - [InlineResponse2003](docs/InlineResponse2003.md)
- - [InlineResponse2004](docs/InlineResponse2004.md)
- - [InlineResponse2005](docs/InlineResponse2005.md)
- - [InlineResponse2006](docs/InlineResponse2006.md)
- - [InlineResponse2007](docs/InlineResponse2007.md)
- - [InlineResponse2007Meta](docs/InlineResponse2007Meta.md)
- - [InlineResponse2008](docs/InlineResponse2008.md)
- - [InlineResponse2009](docs/InlineResponse2009.md)
- - [InlineResponse201](docs/InlineResponse201.md)
- - [InlineResponse2011](docs/InlineResponse2011.md)
- - [InlineResponse2012](docs/InlineResponse2012.md)
- - [InlineResponse2013](docs/InlineResponse2013.md)
- - [InlineResponse2014](docs/InlineResponse2014.md)
- - [InlineResponse2015](docs/InlineResponse2015.md)
- - [InlineResponse201Data](docs/InlineResponse201Data.md)
- - [InlineResponse401](docs/InlineResponse401.md)
- - [InlineResponse403](docs/InlineResponse403.md)
- - [InlineResponse404](docs/InlineResponse404.md)
- - [MetaDataError](docs/MetaDataError.md)
- - [MetaDataSuccess](docs/MetaDataSuccess.md)
+ - [InstantiateDSTTemplate](docs/InstantiateDSTTemplate.md)
+ - [LFResource](docs/LFResource.md)
+ - [NotificationEvent](docs/NotificationEvent.md)
+ - [NotificationsResponse](docs/NotificationsResponse.md)
  - [Organization](docs/Organization.md)
+ - [OrganizationPrivateSettings](docs/OrganizationPrivateSettings.md)
+ - [OrganizationPublicSettings](docs/OrganizationPublicSettings.md)
  - [OrganizationSettings](docs/OrganizationSettings.md)
- - [PaginationData](docs/PaginationData.md)
- - [SMS](docs/SMS.md)
+ - [OrganizationSettingsAlfrescoProperties](docs/OrganizationSettingsAlfrescoProperties.md)
+ - [OrganizationsGetResponse](docs/OrganizationsGetResponse.md)
+ - [RobotAuthenticationToken](docs/RobotAuthenticationToken.md)
+ - [RobotConfiguration](docs/RobotConfiguration.md)
+ - [RobotConfigurationAuthentication](docs/RobotConfigurationAuthentication.md)
+ - [RobotConfigurationWebhooks](docs/RobotConfigurationWebhooks.md)
+ - [RobotIdInstantiateRolesMapping](docs/RobotIdInstantiateRolesMapping.md)
+ - [SAMLToken](docs/SAMLToken.md)
+ - [SAMLTokenEduPersonTargetedID](docs/SAMLTokenEduPersonTargetedID.md)
+ - [ServiceFailureResponse](docs/ServiceFailureResponse.md)
  - [Signature](docs/Signature.md)
- - [SignatureDST](docs/SignatureDST.md)
- - [SignatureDSTWhere](docs/SignatureDSTWhere.md)
- - [SignatureImplementationResponse](docs/SignatureImplementationResponse.md)
- - [SignatureImplementationResponseChannel](docs/SignatureImplementationResponseChannel.md)
- - [SignatureTransaction](docs/SignatureTransaction.md)
- - [SignatureWhere](docs/SignatureWhere.md)
- - [Token](docs/Token.md)
- - [UpdateOrganization](docs/UpdateOrganization.md)
- - [UpdateToken](docs/UpdateToken.md)
- - [UpdateUser](docs/UpdateUser.md)
+ - [SignatureRequest](docs/SignatureRequest.md)
+ - [SignatureRestriction](docs/SignatureRestriction.md)
+ - [SignatureStatusChangedNotification](docs/SignatureStatusChangedNotification.md)
+ - [SignatureStatusChangedNotificationDocument](docs/SignatureStatusChangedNotificationDocument.md)
+ - [SignatureStatusChangedNotificationDst](docs/SignatureStatusChangedNotificationDst.md)
+ - [Signer](docs/Signer.md)
+ - [SignerInstance](docs/SignerInstance.md)
+ - [SignerRecord](docs/SignerRecord.md)
+ - [SignersGroup](docs/SignersGroup.md)
+ - [TrustedDevice](docs/TrustedDevice.md)
+ - [TrustedDevicesGetResponse](docs/TrustedDevicesGetResponse.md)
  - [User](docs/User.md)
+ - [UserGroup](docs/UserGroup.md)
+ - [UserGroupGetResponse](docs/UserGroupGetResponse.md)
+ - [UserSyncReport](docs/UserSyncReport.md)
+ - [UserSyncReportUsers](docs/UserSyncReportUsers.md)
+ - [UsersGetResponse](docs/UsersGetResponse.md)
+
+
 ## Documentation for Authorization
+
 Authentication schemes defined for the API:
-### ApiKeyAuth
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
+### Basic
+
+- **Type**: HTTP basic authentication
+
+### OAuth2
+
+- **Type**: OAuth
+- **Flow**: password
+- **Authorization URL**: 
+- **Scopes**: 
+  - all: All Scopes
+  - signer: Grants read access
+  - admin: Grants read to an admin
+
+
 ## Recommendation
+
 It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
+
 ## Author
-smartcloud@bit4id.com
+
+
+

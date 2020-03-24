@@ -1,9 +1,9 @@
 /*
- * Signing Today API
- * KlNpZ25pbmcgVG9kYXkqIGVuYWJsZXMgc2VhbWxlc3MgaW50ZWdyYXRpb24gb2YgZGlnaXRhbCBzaWduYXR1cmVzIGludG8gYW55CndlYnNpdGUgYnkgdGhlIHVzZSBvZiBlYXN5IHJlcXVlc3RzIHRvIG91ciBBUEkuIFRoaXMgaXMgdGhlIHNtYXJ0IHdheSBvZgphZGRpbmcgZGlnaXRhbCBzaWduYXR1cmUgc3VwcG9ydCB3aXRoIGEgZ3JlYXQgdXNlciBleHBlcmllbmNlLgoKCipTaWduaW5nIFRvZGF5IEFQSXMqIHVzZSBIVFRQIG1ldGhvZHMgYW5kIGFyZSBSRVNUZnVsIGJhc2VkLCBtb3Jlb3ZlciB0aGV5CmFyZSBwcm90ZWN0ZWQgYnkgYSAqc2VydmVyIHRvIHNlcnZlciBhdXRoZW50aWNhdGlvbiogc3RhbmRhcmQgYnkgdGhlIHVzZSBvZgp0b2tlbnMuCgoKKlNpZ25pbmcgVG9kYXkgQVBJcyogY2FuIGJlIHVzZWQgaW4gdGhlc2UgZW52aXJvbm1lbnRzOgoKCnwgRW52aXJvbm1lbnQgfCBEZXNjcmlwdGlvbiB8IEVuZHBvaW50IHwKfCAtLS0tLS0tLS0tLSB8IC0tLS0tLS0tLS0tIHwgLS0tLS0tLS0gfAp8IFNhbmRib3ggICAgIHwgVGVzdCBlbnZpcm9ubWVudCB8IGBodHRwczovL3NhbmRib3guc2lnbmluZ3RvZGF5LmNvbWAgfAp8IExpdmUgICAgICAgIHwgUHJvZHVjdGlvbiBlbnZpcm9ubWVudCB8IGBodHRwczovL2FwaS5zaWduaW5ndG9kYXkuY29tYCB8CgoKRm9yIGV2ZXJ5IHNpbmdsZSByZXF1ZXN0IHRvIFNpZ25pbmcgVG9kYXkgaGFzIHRvIGJlIGRlZmluZWQgdGhlIGZvbGxvd2luZwoqSFRUUCogaGVhZGVyOgotIGBBdXRob3JpemF0aW9uYCwgd2hpY2ggY29udGFpbnMgdGhlIGF1dGhlbnRpY2F0aW9uIHRva2VuLgoKSWYgdGhlIHJlcXVlc3QgaGFzIGEgYm9keSB0aGFuIGFub3RoZXIgKkhUVFAqIGhlYWRlciBpcyByZXF1ZXN0ZWQ6Ci0gYENvbnRlbnQtVHlwZWAsIHdpdGggYGFwcGxpY2F0aW9uL2pzb25gIHZhbHVlLgoKCkZvbGxvd3MgYW4gZXhhbXBsZSBvZiB1c2FnZSB0byBlbnVtZXJhdGUgYWxsIHRoZSB1c2VyIG9mICpteS1vcmcqCm9yZ2FuaXphdGlvbi4KCioqRXhhbXBsZSoqCgpgYGBqc29uCiQgY3VybCBodHRwczovL3NhbmRib3guc2lnbmluZ3RvZGF5LmNvbS9hcGkvdjEvbXktb3JnL3VzZXJzIFwKICAgIC1IICdBdXRob3JpemF0aW9uOiBUb2tlbiA8YWNjZXNzLXRva2VuPicKYGBgCgojIyBIVFRQIG1ldGhvZHMgdXNlZAoKQVBJcyB1c2UgdGhlIHJpZ2h0IEhUVFAgdmVyYiBpbiBldmVyeSBzaXR1YXRpb24uCgp8IE1ldGhvZCAgIHwgRGVzY3JpcHRpb24gICAgICAgICAgICAgICAgICAgIHwKfCAtLS0tLS0tLSB8IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSB8CnwgYEdFVGAgICAgfCBSZXF1ZXN0IGRhdGEgZnJvbSBhIHJlc291cmNlICAgfAp8IGBQT1NUYCAgIHwgU2VuZCBkYXRhIHRvIGNyZWF0ZSBhIHJlc291cmNlIHwKfCBgUFVUYCAgICB8IFVwZGF0ZSBhIHJlc291cmNlICAgICAgICAgICAgICB8CnwgYFBBVENIYCAgfCBQYXJ0aWFsbHkgdXBkYXRlIGEgcmVzb3VyY2UgICAgfAp8IGBERUxFVEVgIHwgRGVsZXRlIGEgcmVzb3Vyc2UgICAgICAgICAgICAgIHwKCgojIyBSZXNwb25zZSBkZWZpbml0aW9uCgpBbGwgdGhlIHJlc3BvbnNlIGFyZSBpbiBKU09OIGZvcm1hdC4KQXMgcmVzcG9uc2UgdG8gYSByZXF1ZXN0IG9mIGFsbCB1c2VycyBvZiBhbiBvcmdhbml6YXRpb24geW91IHdpbGwgaGF2ZSBhCnJlc3VsdCBsaWtlIHRoaXM6CgpgYGBqc29uCnsKICAgICJwYWdpbmF0aW9uIjogewogICAgICAiY291bnQiOiA3NSwKICAgICAgInByZXZpb3VzIjogImh0dHBzOi8vc2FuZGJveC5zaWduaW5ndG9kYXkuY29tL2FwaS92MS9teS1vcmcvdXNlcnM/cGFnZT0xIiwKICAgICAgIm5leHQiOiAiaHR0cHM6Ly9zYW5kYm94LnNpZ25pbmd0b2RheS5jb20vYXBpL3YxL215LW9yZy91c2Vycz9wYWdlPTMiLAogICAgICAicGFnZXMiOiA4LAogICAgICAicGFnZSI6IDIKICAgIH0sCiAgICAibWV0YSI6IHsKICAgICAgImNvZGUiOiAyMDAKICAgIH0sCiAgICAiZGF0YSI6IFsKICAgICAgewogICAgICAgICJpZCI6ICJqZG8iLAogICAgICAgICJzdGF0dXMiOiAiZW5hYmxlZCIsCiAgICAgICAgInR5cGUiOiAiQmFzaWMgdXNlciBhY2NvdW50IiwKICAgICAgICAiZW1haWwiOiBqb2huZG9lQGR1bW15ZW1haWwuY29tLAogICAgICAgICJmaXJzdF9uYW1lIjogIkpvaG4iLAogICAgICAgICJsYXN0X25hbWUiOiAiRG9lIiwKICAgICAgICAid2FsbGV0IjogW10sCiAgICAgICAgImNyZWF0ZWRfYnkiOiAic3lzdGVtIiwKICAgICAgICAib3duZXIiOiBmYWxzZSwKICAgICAgICAiYXV0b21hdGljIjogZmFsc2UsCiAgICAgICAgInJhbyI6IGZhbHNlCiAgICAgIH0sCiAgICAgIC4uLgogICAgXQogIH0KYGBgCgpUaGUgSlNPTiBvZiB0aGUgcmVzcG9uc2UgaXMgbWFkZSBvZiB0aHJlZSBwYXJ0czoKLSBQYWdpbmF0aW9uCi0gTWV0YQotIERhdGEKCiMjIyBQYWdpbmF0aW9uCgoqUGFnaW5hdGlvbiogb2JqZWN0IGFsbG93cyB0byBzcGxpdCB0aGUgcmVzcG9uc2UgaW50byBwYXJ0cyBhbmQgdGhlbiB0bwpyZWJ1aWxkIGl0IHNlcXVlbnRpYWxseSBieSB0aGUgdXNlIG9mIGBuZXh0YCBhbmQgYHByZXZpb3VzYCBwYXJhbWV0ZXJzLCBieQp3aGljaCB5b3UgZ2V0IHByZXZpb3VzIGFuZCBmb2xsb3dpbmcgYmxvY2tzLiBUaGUgKlBhZ2luYXRpb24qIGlzIHByZXNlbnQKb25seSBpZiB0aGUgcmVzcG9uc2UgaXMgYSBsaXN0IG9mIG9iamVjdHMuCgpUaGUgZ2VuZXJhbCBzdHJ1Y3R1cmUgb2YgKlBhZ2luYXRpb24qIG9iamVjdCBpcyB0aGUgZm9sbG93aW5nOgoKYGBganNvbgp7CiAgICAicGFnaW5hdGlvbiI6IHsKICAgICAgImNvdW50IjogNzUsCiAgICAgICJwcmV2aW91cyI6ICJodHRwczovL3NhbmRib3guc2lnbmluZ3RvZGF5LmNvbS9hcGkvdjEvbXktb3JnL3VzZXJzP3BhZ2U9MSIsCiAgICAgICJuZXh0IjogImh0dHBzOi8vc2FuZGJveC5zaWduaW5ndG9kYXkuY29tL2FwaS92MS9teS1vcmcvdXNlcnM/cGFnZT0zIiwKICAgICAgInBhZ2VzIjogOCwKICAgICAgInBhZ2UiOiAyCiAgICB9LAogICAgLi4uCiAgfQpgYGAKCiMjIyBNZXRhCgoqTWV0YSogb2JqZWN0IGlzIHVzZWQgdG8gZW5yaWNoIHRoZSBpbmZvcm1hdGlvbiBhYm91dCB0aGUgcmVzcG9uc2UuIEluIHRoZQpwcmV2aW91cyBleGFtcGxlLCBhIHN1Y2Nlc3NmdWwgY2FzZSBvZiByZXNwb25zZSwgKk1ldGEqIHdpbGwgaGF2ZSB2YWx1ZQpgc3RhdHVzOiAyWFhgLiBJbiBjYXNlIG9mIHVuc3VjY2Vzc2Z1bCByZXNwb25zZSwgKk1ldGEqIHdpbGwgaGF2ZSBmdXJ0aGVyCmluZm9ybWF0aW9uLCBhcyBmb2xsb3dzOgoKYGBganNvbgp7CiAgICAibWV0YSI6IHsKICAgICAgImNvZGUiOiA8SFRUUCBTVEFUVVMgQ09ERT4sCiAgICAgICJlcnJvcl90eXBlIjogPFNUQVRVUyBDT0RFIERFU0NSSVBUSU9OPiwKICAgICAgImVycm9yX21lc3NhZ2UiOiA8RVJST1IgREVTQ1JJUFRJT04+CiAgICB9CiAgfQpgYGAKCiMjIyBEYXRhCgoqRGF0YSogb2JqZWN0IG91dHB1dHMgYXMgb2JqZWN0IG9yIGxpc3Qgb2YgdGhlbS4gQ29udGFpbnMgdGhlIGV4cGVjdGVkIGRhdGEKYXMgcmVxdWVzdGVkIHRvIHRoZSBBUEkuCgojIyBTZWFyY2ggZmlsdGVycwoKU2VhcmNoIGZpbHRlcnMgb2YgdGhlIEFQSSBoYXZlIHRoZSBmb2xsb3dpbmcgc3RydWN0dXJlOgoKYHdoZXJlX0FUVFJJQlVURU5BTUVgPWBWQUxVRWAKCkluIHRoaXMgd2F5IHlvdSBtYWtlIGEgY2FzZS1zZW5zaXRpdmUgc2VhcmNoIG9mICpWQUxVRSouIFlvdSBjYW4gZXh0ZW5kIGl0CnRocm91Z2ggdGhlIERqYW5nbyBsb29rdXAsIG9idGFpbmluZyBtb3JlIHNwZWNpZmljIGZpbHRlcnMuIEZvciBleGFtcGxlOgoKYHdoZXJlX0FUVFJJQlVURU5BTUVfX0xPT0tVUGA9YFZBTFVFYAoKd2hlcmUgKkxPT0tVUCogY2FuIGJlIHJlcGxhY2VkIHdpdGggYGljb250YWluc2AgdG8gaGF2ZSBhIHBhcnRpYWwgaW5zZW5zaXRpdmUKcmVzZWFyY2gsIHdoZXJlCgpgd2hlcmVfZmlyc3RfbmFtZV9faWNvbnRhaW5zYD1gQ0hhYAoKbWF0Y2hlcyB3aXRoIGV2ZXJ5IHVzZXIgdGhhdCBoYXZlIHRoZSAqY2hhKiBzdHJpbmcgaW4gdGhlaXIgbmFtZSwgd2l0aApubyBkaWZmZXJlbmNlcyBiZXR3ZWVuIGNhcGl0YWwgYW5kIGxvd2VyIGNhc2VzLgoKW0hlcmVdKGh0dHBzOi8vZG9jcy5kamFuZ29wcm9qZWN0LmNvbS9lbi8xLjExL3JlZi9tb2RlbHMvcXVlcnlzZXRzLyNmaWVsZC1sb29rdXBzKQp0aGUgbGlzdCBvZiB0aGUgbG9va3Vwcy4KCiMjIFdlYmhvb2tzCgpTaWduaW5nIFRvZGF5IHN1cHBvcnRzIHdlYmhvb2tzIGZvciB0aGUgdXBkYXRlIG9mIERTVHMgYW5kIGlkZW50aXRpZXMgc3RhdHVzLgpZb3UgY2FuIGNob29zZSBpZiB0byB1c2Ugb3Igbm90IHdlYmhvb2tzIGFuZCBpZiB5b3Ugd2FudCB0byByZWNlaXZlIHVwZGF0ZXMKYWJvdXQgRFNUcyBhbmQvb3IgaWRlbnRpdGllcy4gWW91IGNhbiBjb25maWd1cmF0ZSBpdCBvbiBhcHBsaWNhdGlvbiB0b2tlbgpsZXZlbCwgaW4gdGhlICp3ZWJob29rKiBmaWVsZCwgYXMgZm9sbG93czoKCmBgYGpzb24KIndlYmhvb2tzIjogewogICJkc3QiOiAiVVJMIiwKICAiaWRlbnRpdHkiOiAiVVJMIgogIH0KYGBgCgojIyMgRFNUcyBzdGF0dXMgdXBkYXRlCgpEU1RzIHNlbmQgdGhlIGZvbGxvd2luZyBzdGF0dXMgdXBkYXRlczoKLSAqKkRTVF9TVEFUVVNfQ0hBTkdFRCoqOiB3aGVuZXZlciB0aGUgRFNUIGNoYW5nZXMgaXRzIHN0YXR1cwotICoqU0lHTkFUVVJFX1NUQVRVU19DSEFOR0VEKio6IHdoZW5ldmVyIG9uZSBvZiB0aGUgc2lnbmF0dXJlcyBjaGFuZ2VzIGl0cwpzdGF0dXMKCiMjIyMgRFNUX1NUQVRVU19DSEFOR0VECgpTZW5kcyB0aGUgZm9sbG93aW5nIGluZm9ybWF0aW9uOgoKYGBganNvbgp7CiAgICAibWVzc2FnZSI6ICJEU1RfU1RBVFVTX0NIQU5HRUQiLAogICAgImRhdGEiOiB7CiAgICAgICJzdGF0dXMiOiAiPERTVF9TVEFUVVM+IiwKICAgICAgImRzdCI6ICI8RFNUX0lEPiIsCiAgICAgICJyZWFzb24iOiAiPERTVF9SRUFTT04+IgogICAgfQogIH0KYGBgCgojIyMjIFNJR05BVFVSRV9TVEFUVVNfQ0hBTkdFRAoKU2VuZHMgdGhlIGZvbGxvd2luZyBpbmZvcm1hdGlvbjoKCmBgYGpzb24KewogICAgIm1lc3NhZ2UiOiAiU0lHTkFUVVJFX1NUQVRVU19DSEFOR0VEIiwKICAgICJkYXRhIjogewogICAgICAic3RhdHVzIjogIjxTSUdOQVRVUkVfU1RBVFVTPiIsCiAgICAgICJncm91cCI6IDxNRU1CRVJTSElQX0dST1VQX0lOREVYPiwKICAgICAgImRzdCI6IHsKICAgICAgICAiaWQiOiAiPERTVF9JRD4iLAogICAgICAgICJ0aXRsZSI6ICI8RFNUX1RJVExFPiIKICAgICAgfSwKICAgICAgInNpZ25hdHVyZSI6ICI8U0lHTkFUVVJFX0lEPiIsCiAgICAgICJzaWduZXIiOiAiPFNJR05FUl9VU0VSTkFNRT4iLAogICAgICAicG9zaXRpb24iOiAiPFNJR05BVFVSRV9QT1NJVElPTj4iLAogICAgICAiZG9jdW1lbnQiOiB7CiAgICAgICAgImRpc3BsYXlfbmFtZSI6ICI8RE9DVU1FTlRfVElUTEU+IiwKICAgICAgICAiaWQiOiAiPERPQ1VNRU5UX0lEPiIsCiAgICAgICAgIm9yZGVyIjogPERPQ1VNRU5UX0lOREVYPgogICAgICB9LAogICAgICAiYXV0b21hdGljIjogPERFQ0xBUkVTX0lGX1RIRV9TSUdORVJfSVNfQVVUT01BVElDPiwKICAgICAgInBhZ2UiOiAiPFNJR05BVFVSRV9QQUdFPiIKICAgIH0KICB9CmBgYAoKIyMjIElkZW50aXRpZXMgc3RhdHVzIHVwZGF0ZQoKSWRlbnRpdGllcyBzZW5kIHRoZSBmb2xsb3dpbmcgc3RhdHVzIHVwZGF0ZXM6Ci0gKipJREVOVElUWV9SRVFVRVNUX0VOUk9MTEVEKio6IHdoZW5ldmVyIGFuIGlkZW50aXR5IHJlcXVlc3QgaXMgYWN0aXZhdGVkCgojIyMjIElERU5USVRZX1JFUVVFU1RfRU5ST0xMRUQKClNlbmRzIHRoZSBmb2xsb3dpbmcgaW5mb3JtYXRpb246CgpgYGBqc29uCnsKICAgICJtZXNzYWdlIjogIklERU5USVRZX1JFUVVFU1RfRU5ST0xMRUQiLAogICAgImRhdGEiOiB7CiAgICAgICJzdGF0dXMiOiAiPFJFUVVFU1RfU1RBVFVTPiIsCiAgICAgICJyZXF1ZXN0IjogIjxSRVFVRVNUX0lEPiIsCiAgICAgICJ1c2VyIjogIjxBUFBMSUNBTlRfVVNFUk5BTUU+IgogICAgfQogIH0KYGBgCgojIyMgVXJsYmFjawoKU29tZXRpbWVzIG1heSBiZSBuZWNlc3NhcnkgdG8gbWFrZSBhIHJlZGlyZWN0IGFmdGVyIGFuIHVzZXIsIGZyb20gdGhlCnNpZ25hdHVyZSB0cmF5LCBoYXMgY29tcGxldGVkIGhpcyBvcGVyYXRpb25zIG9yIGFjdGl2YXRlZCBhIGNlcnRpZmljYXRlLgoKSWYgc2V0LCByZWRpcmVjdHMgY291bGQgaGFwcGVuIGluIDMgY2FzZXM6Ci0gYWZ0ZXIgYSBzaWduYXR1cmUgb3IgZGVjbGluZQotIGFmdGVyIGEgRFNUIGhhcyBiZWVuIHNpZ25lZCBieSBhbGwgdGhlIHNpZ25lcnMgb3IgY2FuY2VsZWQKLSBhZnRlciB0aGUgYWN0aXZhdGlvbiBvZiBhIGNlcnRpZmljYXRlCgpJbiB0aGUgZmlyc3QgdHdvIGNhc2VzIHRoZSB1cmxiYWNrIHJldHVybnMgdGhlIGZvbGxvd2luZyBpbmZvcm1hdGlvbiB0aHJvdWdoCmEgZGF0YSBmb3JtOgotICoqZHN0LWlkKio6IGlkIG9mIHRoZSBEU1QKLSAqKmRzdC11cmwqKjogc2lnbmF0dXJlX3RpY2tldCBvZiB0aGUgc2lnbmF0dXJlCi0gKipkc3Qtc3RhdHVzKio6IGN1cnJlbnQgc3RhdHVzIG9mIHRoZSBEU1QKLSAqKmRzdC1zaWduYXR1cmUtaWQqKjogaWQgb2YgdGhlIHNpZ25hdHVyZQotICoqZHN0LXNpZ25hdHVyZS1zdGF0dXMqKjogY3VycmVudCBzdGF0dXMgb2YgdGhlIHNpZ25hdHVyZQotICoqdXNlcioqOiB1c2VybmFtZSBvZiB0aGUgc2lnbmVyCi0gKipkZWNsaW5lLXJlYXNvbioqOiBpbiBjYXNlIG9mIGEgcmVmdXNlZCBEU1QgY29udGFpbnMgdGhlIHJlYXNvbiBvZiB0aGUKZGVjbGluZQoKSW4gdGhlIGxhc3QgY2FzZSB0aGUgdXJsYmFjayByZXR1cm5zIHRoZSBmb2xsb3dpbmcgaW5mb3JtYXRpb24gdGhyb3VnaCBhCmRhdGEgZm9ybToKLSAqKnVzZXIqKjogdXNlcm5hbWUgb2YgdGhlIHVzZXIgYWN0aXZhdGVkIHRoZSBjZXJ0aWZpY2F0ZQotICoqaWRlbnRpdHktcHJvdmlkZXIqKjogdGhlIHByb3ZpZGVyIGhhcyBiZWVuIHVzZWQgdG8gaXNzdWUgdGhlIGNlcnRpZmljYXRlCi0gKippZGVudGl0eS1yZXF1ZXN0LWlkKio6IGlkIG9mIHRoZSBlbnJvbGxtZW50IHJlcXVlc3QKLSAqKmlkZW50aXR5LWlkKio6IGlkIG9mIHRoZSBuZXcgaWRlbnRpdHkKLSAqKmlkZW50aXR5LWxhYmVsKio6IHRoZSBsYWJlbCBhc3NpZ25lZCB0byB0aGUgaWRlbnRpdHkKLSAqKmlkZW50aXR5LWNlcnRpZmljYXRlKio6IHB1YmxpYyBrZXkgb2YgdGhlIGNlcnRpZmljYXRlCgoK
+ * Signing Today Web
+ * *Signing Today* is the perfect Digital Signature Gateway. Whenever in Your workflow You need to add one or more Digital Signatures to Your document, *Signing Today* is the right choice. You prepare Your documents, *Signing Today* takes care of all the rest: send invitations (`signature tickets`) to signers, collects their signatures, send You back the signed document. Integrating *Signing Today* in Your existing applications is very easy. Just follow these API specifications and get inspired by the many examples presented hereafter. 
  *
- * The version of the OpenAPI document: 1.5.0
- * Contact: smartcloud@bit4id.com
+ * The version of the OpenAPI document: 2.0.0
+ * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
  * https://openapi-generator.tech
@@ -27,14 +27,15 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import signingToday.client.model.CreateUser;
-import signingToday.client.model.Id;
-import signingToday.client.model.InlineResponse20012;
-import signingToday.client.model.InlineResponse2015;
-import signingToday.client.model.InlineResponse401;
-import signingToday.client.model.InlineResponse403;
-import signingToday.client.model.InlineResponse404;
-import signingToday.client.model.UpdateUser;
+import signingToday.client.model.CreateUserRequest;
+import signingToday.client.model.ErrorResponse;
+import signingToday.client.model.Identity;
+import signingToday.client.model.ServiceFailureResponse;
+import java.util.UUID;
+import signingToday.client.model.User;
+import signingToday.client.model.UserGroup;
+import signingToday.client.model.UserGroupGetResponse;
+import signingToday.client.model.UsersGetResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -62,170 +63,40 @@ public class UsersApi {
     }
 
     /**
-     * Build call for createUser
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param createUser The new user object to create (required)
+     * Build call for userIdDelete
+     * @param id The value of _the unique id_ (required)
+     * @param enabled This is a _boolean_ parameter. If true the User is **enabled**  (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createUserCall(String organizationId, CreateUser createUser, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = createUser;
+    public okhttp3.Call userIdDeleteCall(UUID id, Boolean enabled, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{organization-id}/users"
-            .replaceAll("\\{" + "organization-id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+        String localVarPath = "/user/{id}"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (enabled != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("enabled", enabled));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call createUserValidateBeforeCall(String organizationId, CreateUser createUser, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling createUser(Async)");
-        }
-        
-        // verify the required parameter 'createUser' is set
-        if (createUser == null) {
-            throw new ApiException("Missing the required parameter 'createUser' when calling createUser(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = createUserCall(organizationId, createUser, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Create a user of the organization
-     * This API allows to create a new user of the organization. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param createUser The new user object to create (required)
-     * @return InlineResponse2015
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
-     </table>
-     */
-    public InlineResponse2015 createUser(String organizationId, CreateUser createUser) throws ApiException {
-        ApiResponse<InlineResponse2015> localVarResp = createUserWithHttpInfo(organizationId, createUser);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Create a user of the organization
-     * This API allows to create a new user of the organization. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param createUser The new user object to create (required)
-     * @return ApiResponse&lt;InlineResponse2015&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<InlineResponse2015> createUserWithHttpInfo(String organizationId, CreateUser createUser) throws ApiException {
-        okhttp3.Call localVarCall = createUserValidateBeforeCall(organizationId, createUser, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2015>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Create a user of the organization (asynchronously)
-     * This API allows to create a new user of the organization. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param createUser The new user object to create (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createUserAsync(String organizationId, CreateUser createUser, final ApiCallback<InlineResponse2015> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = createUserValidateBeforeCall(organizationId, createUser, _callback);
-        Type localVarReturnType = new TypeToken<InlineResponse2015>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getUser
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getUserCall(String organizationId, Id userId, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = new Object();
-
-        // create path and map variables
-        String localVarPath = "/{organization-id}/users/{user-id}"
-            .replaceAll("\\{" + "organization-id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "user-id" + "\\}", localVarApiClient.escapeString(userId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
+            "*/*"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -238,154 +109,120 @@ public class UsersApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getUserValidateBeforeCall(String organizationId, Id userId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call userIdDeleteValidateBeforeCall(UUID id, Boolean enabled, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling getUser(Async)");
-        }
-        
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling getUser(Async)");
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling userIdDelete(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getUserCall(organizationId, userId, _callback);
+        okhttp3.Call localVarCall = userIdDeleteCall(id, enabled, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get information about an user
-     * This API allows to get information about an user. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
-     * @return InlineResponse2015
+     * Enable or disable a User
+     * This API allows to **enable** or **disable** a User account. 
+     * @param id The value of _the unique id_ (required)
+     * @param enabled This is a _boolean_ parameter. If true the User is **enabled**  (optional, default to false)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public InlineResponse2015 getUser(String organizationId, Id userId) throws ApiException {
-        ApiResponse<InlineResponse2015> localVarResp = getUserWithHttpInfo(organizationId, userId);
-        return localVarResp.getData();
+    public void userIdDelete(UUID id, Boolean enabled) throws ApiException {
+        userIdDeleteWithHttpInfo(id, enabled);
     }
 
     /**
-     * Get information about an user
-     * This API allows to get information about an user. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
-     * @return ApiResponse&lt;InlineResponse2015&gt;
+     * Enable or disable a User
+     * This API allows to **enable** or **disable** a User account. 
+     * @param id The value of _the unique id_ (required)
+     * @param enabled This is a _boolean_ parameter. If true the User is **enabled**  (optional, default to false)
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<InlineResponse2015> getUserWithHttpInfo(String organizationId, Id userId) throws ApiException {
-        okhttp3.Call localVarCall = getUserValidateBeforeCall(organizationId, userId, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2015>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    public ApiResponse<Void> userIdDeleteWithHttpInfo(UUID id, Boolean enabled) throws ApiException {
+        okhttp3.Call localVarCall = userIdDeleteValidateBeforeCall(id, enabled, null);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Get information about an user (asynchronously)
-     * This API allows to get information about an user. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
+     * Enable or disable a User (asynchronously)
+     * This API allows to **enable** or **disable** a User account. 
+     * @param id The value of _the unique id_ (required)
+     * @param enabled This is a _boolean_ parameter. If true the User is **enabled**  (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getUserAsync(String organizationId, Id userId, final ApiCallback<InlineResponse2015> _callback) throws ApiException {
+    public okhttp3.Call userIdDeleteAsync(UUID id, Boolean enabled, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getUserValidateBeforeCall(organizationId, userId, _callback);
-        Type localVarReturnType = new TypeToken<InlineResponse2015>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        okhttp3.Call localVarCall = userIdDeleteValidateBeforeCall(id, enabled, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
-     * Build call for listUsers
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param whereMembershipId Returns the users that have the specified id (optional)
-     * @param whereEmail Returns the users that have the specified email (optional)
-     * @param whereLastName Returns the users that have the specified last name (optional)
-     * @param whereFirstName Returns the users that have the specified first name (optional)
-     * @param page Restricts the search to the chosen page (optional)
-     * @param count Sets the number of users per page to display (optional, default to 100)
+     * Build call for userIdGet
+     * @param id The value of _the unique id_ (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUsersCall(String organizationId, String whereMembershipId, String whereEmail, String whereLastName, String whereFirstName, Integer page, Integer count, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = new Object();
+    public okhttp3.Call userIdGetCall(UUID id, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{organization-id}/users"
-            .replaceAll("\\{" + "organization-id" + "\\}", localVarApiClient.escapeString(organizationId.toString()));
+        String localVarPath = "/user/{id}"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (whereMembershipId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("where_membership_id", whereMembershipId));
-        }
-
-        if (whereEmail != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("where_email", whereEmail));
-        }
-
-        if (whereLastName != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("where_last_name", whereLastName));
-        }
-
-        if (whereFirstName != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("where_first_name", whereFirstName));
-        }
-
-        if (page != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
-        }
-
-        if (count != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("count", count));
-        }
-
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+            "application/json", "*/*"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -398,137 +235,250 @@ public class UsersApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listUsersValidateBeforeCall(String organizationId, String whereMembershipId, String whereEmail, String whereLastName, String whereFirstName, Integer page, Integer count, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call userIdGetValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling listUsers(Async)");
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling userIdGet(Async)");
         }
         
 
-        okhttp3.Call localVarCall = listUsersCall(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count, _callback);
+        okhttp3.Call localVarCall = userIdGetCall(id, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Enumerate the users of an organization
-     * This API allows to enumerate the users of an organization. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param whereMembershipId Returns the users that have the specified id (optional)
-     * @param whereEmail Returns the users that have the specified email (optional)
-     * @param whereLastName Returns the users that have the specified last name (optional)
-     * @param whereFirstName Returns the users that have the specified first name (optional)
-     * @param page Restricts the search to the chosen page (optional)
-     * @param count Sets the number of users per page to display (optional, default to 100)
-     * @return InlineResponse20012
+     * Retrieve a User
+     * This API allows to retrieve a User.
+     * @param id The value of _the unique id_ (required)
+     * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public InlineResponse20012 listUsers(String organizationId, String whereMembershipId, String whereEmail, String whereLastName, String whereFirstName, Integer page, Integer count) throws ApiException {
-        ApiResponse<InlineResponse20012> localVarResp = listUsersWithHttpInfo(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count);
+    public User userIdGet(UUID id) throws ApiException {
+        ApiResponse<User> localVarResp = userIdGetWithHttpInfo(id);
         return localVarResp.getData();
     }
 
     /**
-     * Enumerate the users of an organization
-     * This API allows to enumerate the users of an organization. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param whereMembershipId Returns the users that have the specified id (optional)
-     * @param whereEmail Returns the users that have the specified email (optional)
-     * @param whereLastName Returns the users that have the specified last name (optional)
-     * @param whereFirstName Returns the users that have the specified first name (optional)
-     * @param page Restricts the search to the chosen page (optional)
-     * @param count Sets the number of users per page to display (optional, default to 100)
-     * @return ApiResponse&lt;InlineResponse20012&gt;
+     * Retrieve a User
+     * This API allows to retrieve a User.
+     * @param id The value of _the unique id_ (required)
+     * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<InlineResponse20012> listUsersWithHttpInfo(String organizationId, String whereMembershipId, String whereEmail, String whereLastName, String whereFirstName, Integer page, Integer count) throws ApiException {
-        okhttp3.Call localVarCall = listUsersValidateBeforeCall(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
+    public ApiResponse<User> userIdGetWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = userIdGetValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Enumerate the users of an organization (asynchronously)
-     * This API allows to enumerate the users of an organization. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param whereMembershipId Returns the users that have the specified id (optional)
-     * @param whereEmail Returns the users that have the specified email (optional)
-     * @param whereLastName Returns the users that have the specified last name (optional)
-     * @param whereFirstName Returns the users that have the specified first name (optional)
-     * @param page Restricts the search to the chosen page (optional)
-     * @param count Sets the number of users per page to display (optional, default to 100)
+     * Retrieve a User (asynchronously)
+     * This API allows to retrieve a User.
+     * @param id The value of _the unique id_ (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUsersAsync(String organizationId, String whereMembershipId, String whereEmail, String whereLastName, String whereFirstName, Integer page, Integer count, final ApiCallback<InlineResponse20012> _callback) throws ApiException {
+    public okhttp3.Call userIdGetAsync(UUID id, final ApiCallback<User> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listUsersValidateBeforeCall(organizationId, whereMembershipId, whereEmail, whereLastName, whereFirstName, page, count, _callback);
-        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
+        okhttp3.Call localVarCall = userIdGetValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for updateUser
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
-     * @param updateUser User properties to be edited (required)
+     * Build call for userIdIdentitiesGet
+     * @param id The value of _the unique id_ (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The identities associated to the user. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateUserCall(String organizationId, Id userId, UpdateUser updateUser, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = updateUser;
+    public okhttp3.Call userIdIdentitiesGetCall(UUID id, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{organization-id}/users/{user-id}"
-            .replaceAll("\\{" + "organization-id" + "\\}", localVarApiClient.escapeString(organizationId.toString()))
-            .replaceAll("\\{" + "user-id" + "\\}", localVarApiClient.escapeString(userId.toString()));
+        String localVarPath = "/user/{id}/identities"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+            "application/json", "*/*"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call userIdIdentitiesGetValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling userIdIdentitiesGet(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = userIdIdentitiesGetCall(id, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Retrieve User identities
+     * This API allows to retrieve user identities.
+     * @param id The value of _the unique id_ (required)
+     * @return List&lt;Identity&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The identities associated to the user. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<Identity> userIdIdentitiesGet(UUID id) throws ApiException {
+        ApiResponse<List<Identity>> localVarResp = userIdIdentitiesGetWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Retrieve User identities
+     * This API allows to retrieve user identities.
+     * @param id The value of _the unique id_ (required)
+     * @return ApiResponse&lt;List&lt;Identity&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The identities associated to the user. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<Identity>> userIdIdentitiesGetWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = userIdIdentitiesGetValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<List<Identity>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Retrieve User identities (asynchronously)
+     * This API allows to retrieve user identities.
+     * @param id The value of _the unique id_ (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The identities associated to the user. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userIdIdentitiesGetAsync(UUID id, final ApiCallback<List<Identity>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = userIdIdentitiesGetValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<List<Identity>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for userIdPut
+     * @param id The value of _the unique id_ (required)
+     * @param user User replacing current object. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userIdPutCall(UUID id, User user, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = user;
+
+        // create path and map variables
+        String localVarPath = "/user/{id}"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "*/*"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -541,101 +491,801 @@ public class UsersApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateUserValidateBeforeCall(String organizationId, Id userId, UpdateUser updateUser, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call userIdPutValidateBeforeCall(UUID id, User user, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'organizationId' is set
-        if (organizationId == null) {
-            throw new ApiException("Missing the required parameter 'organizationId' when calling updateUser(Async)");
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling userIdPut(Async)");
         }
         
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling updateUser(Async)");
-        }
-        
-        // verify the required parameter 'updateUser' is set
-        if (updateUser == null) {
-            throw new ApiException("Missing the required parameter 'updateUser' when calling updateUser(Async)");
+        // verify the required parameter 'user' is set
+        if (user == null) {
+            throw new ApiException("Missing the required parameter 'user' when calling userIdPut(Async)");
         }
         
 
-        okhttp3.Call localVarCall = updateUserCall(organizationId, userId, updateUser, _callback);
+        okhttp3.Call localVarCall = userIdPutCall(id, user, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Edit one or more user properties
-     * This API allows to edit one or more user properties. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
-     * @param updateUser User properties to be edited (required)
-     * @return InlineResponse2015
+     * Update a User
+     * This API allows to update a User.
+     * @param id The value of _the unique id_ (required)
+     * @param user User replacing current object. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public InlineResponse2015 updateUser(String organizationId, Id userId, UpdateUser updateUser) throws ApiException {
-        ApiResponse<InlineResponse2015> localVarResp = updateUserWithHttpInfo(organizationId, userId, updateUser);
-        return localVarResp.getData();
+    public void userIdPut(UUID id, User user) throws ApiException {
+        userIdPutWithHttpInfo(id, user);
     }
 
     /**
-     * Edit one or more user properties
-     * This API allows to edit one or more user properties. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
-     * @param updateUser User properties to be edited (required)
-     * @return ApiResponse&lt;InlineResponse2015&gt;
+     * Update a User
+     * This API allows to update a User.
+     * @param id The value of _the unique id_ (required)
+     * @param user User replacing current object. (required)
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<InlineResponse2015> updateUserWithHttpInfo(String organizationId, Id userId, UpdateUser updateUser) throws ApiException {
-        okhttp3.Call localVarCall = updateUserValidateBeforeCall(organizationId, userId, updateUser, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2015>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    public ApiResponse<Void> userIdPutWithHttpInfo(UUID id, User user) throws ApiException {
+        okhttp3.Call localVarCall = userIdPutValidateBeforeCall(id, user, null);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Edit one or more user properties (asynchronously)
-     * This API allows to edit one or more user properties. 
-     * @param organizationId The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (required)
-     * @param userId The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  (required)
-     * @param updateUser User properties to be edited (required)
+     * Update a User (asynchronously)
+     * This API allows to update a User.
+     * @param id The value of _the unique id_ (required)
+     * @param user User replacing current object. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateUserAsync(String organizationId, Id userId, UpdateUser updateUser, final ApiCallback<InlineResponse2015> _callback) throws ApiException {
+    public okhttp3.Call userIdPutAsync(UUID id, User user, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateUserValidateBeforeCall(organizationId, userId, updateUser, _callback);
-        Type localVarReturnType = new TypeToken<InlineResponse2015>(){}.getType();
+        okhttp3.Call localVarCall = userIdPutValidateBeforeCall(id, user, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for userIdRolePut
+     * @param id The value of _the unique id_ (required)
+     * @param newRole The new **role** of the User. Allowed values are **admin**, **instructor**, **signer**  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Cannot satisfy the request because the resource is in an illegal status. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userIdRolePutCall(UUID id, String newRole, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/user/{id}/role"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (newRole != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("newRole", newRole));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "*/*"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call userIdRolePutValidateBeforeCall(UUID id, String newRole, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling userIdRolePut(Async)");
+        }
+        
+        // verify the required parameter 'newRole' is set
+        if (newRole == null) {
+            throw new ApiException("Missing the required parameter 'newRole' when calling userIdRolePut(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = userIdRolePutCall(id, newRole, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Change the User role
+     * This API allows to change the permissions associated to the users, (**capabilities**) according to predefined user roles. 
+     * @param id The value of _the unique id_ (required)
+     * @param newRole The new **role** of the User. Allowed values are **admin**, **instructor**, **signer**  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Cannot satisfy the request because the resource is in an illegal status. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public void userIdRolePut(UUID id, String newRole) throws ApiException {
+        userIdRolePutWithHttpInfo(id, newRole);
+    }
+
+    /**
+     * Change the User role
+     * This API allows to change the permissions associated to the users, (**capabilities**) according to predefined user roles. 
+     * @param id The value of _the unique id_ (required)
+     * @param newRole The new **role** of the User. Allowed values are **admin**, **instructor**, **signer**  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Cannot satisfy the request because the resource is in an illegal status. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> userIdRolePutWithHttpInfo(UUID id, String newRole) throws ApiException {
+        okhttp3.Call localVarCall = userIdRolePutValidateBeforeCall(id, newRole, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Change the User role (asynchronously)
+     * This API allows to change the permissions associated to the users, (**capabilities**) according to predefined user roles. 
+     * @param id The value of _the unique id_ (required)
+     * @param newRole The new **role** of the User. Allowed values are **admin**, **instructor**, **signer**  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The resource was not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Cannot satisfy the request because the resource is in an illegal status. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userIdRolePutAsync(UUID id, String newRole, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = userIdRolePutValidateBeforeCall(id, newRole, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for usersGet
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersGetCall(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/users";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if ($top != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$top", $top));
+        }
+
+        if ($skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$skip", $skip));
+        }
+
+        if ($count != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$count", $count));
+        }
+
+        if ($orderBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$orderBy", $orderBy));
+        }
+
+        if ($filter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$filter", $filter));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json", "*/*"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call usersGetValidateBeforeCall(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = usersGetCall($top, $skip, $count, $orderBy, $filter, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Retrieve Users
+     * This allows to get the list of the Users of an Organization.
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @return UsersGetResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public UsersGetResponse usersGet(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter) throws ApiException {
+        ApiResponse<UsersGetResponse> localVarResp = usersGetWithHttpInfo($top, $skip, $count, $orderBy, $filter);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Retrieve Users
+     * This allows to get the list of the Users of an Organization.
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @return ApiResponse&lt;UsersGetResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<UsersGetResponse> usersGetWithHttpInfo(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter) throws ApiException {
+        okhttp3.Call localVarCall = usersGetValidateBeforeCall($top, $skip, $count, $orderBy, $filter, null);
+        Type localVarReturnType = new TypeToken<UsersGetResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Retrieve Users (asynchronously)
+     * This allows to get the list of the Users of an Organization.
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersGetAsync(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter, final ApiCallback<UsersGetResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = usersGetValidateBeforeCall($top, $skip, $count, $orderBy, $filter, _callback);
+        Type localVarReturnType = new TypeToken<UsersGetResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for usersGroupsGet
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersGroupsGetCall(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/users/groups";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if ($top != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$top", $top));
+        }
+
+        if ($skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$skip", $skip));
+        }
+
+        if ($count != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$count", $count));
+        }
+
+        if ($orderBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$orderBy", $orderBy));
+        }
+
+        if ($filter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("$filter", $filter));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json", "*/*"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call usersGroupsGetValidateBeforeCall(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = usersGroupsGetCall($top, $skip, $count, $orderBy, $filter, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Retrieve UserGroups
+     * This API allows to get the list of the UserGroups.
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @return UserGroupGetResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public UserGroupGetResponse usersGroupsGet(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter) throws ApiException {
+        ApiResponse<UserGroupGetResponse> localVarResp = usersGroupsGetWithHttpInfo($top, $skip, $count, $orderBy, $filter);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Retrieve UserGroups
+     * This API allows to get the list of the UserGroups.
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @return ApiResponse&lt;UserGroupGetResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<UserGroupGetResponse> usersGroupsGetWithHttpInfo(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter) throws ApiException {
+        okhttp3.Call localVarCall = usersGroupsGetValidateBeforeCall($top, $skip, $count, $orderBy, $filter, null);
+        Type localVarReturnType = new TypeToken<UserGroupGetResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Retrieve UserGroups (asynchronously)
+     * This API allows to get the list of the UserGroups.
+     * @param $top A number of results to return. Applied after **$skip**  (optional)
+     * @param $skip An offset into the collection of results (optional)
+     * @param $count If true, the server includes the count of all the items in the response  (optional)
+     * @param $orderBy An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) (optional)
+     * @param $filter A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The data matching the selection parameters. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersGroupsGetAsync(Integer $top, Long $skip, Boolean $count, String $orderBy, String $filter, final ApiCallback<UserGroupGetResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = usersGroupsGetValidateBeforeCall($top, $skip, $count, $orderBy, $filter, _callback);
+        Type localVarReturnType = new TypeToken<UserGroupGetResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for usersGroupsPost
+     * @param userGroup UserGroup list to be added. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersGroupsPostCall(List<UserGroup> userGroup, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = userGroup;
+
+        // create path and map variables
+        String localVarPath = "/users/groups";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "*/*"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call usersGroupsPostValidateBeforeCall(List<UserGroup> userGroup, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'userGroup' is set
+        if (userGroup == null) {
+            throw new ApiException("Missing the required parameter 'userGroup' when calling usersGroupsPost(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = usersGroupsPostCall(userGroup, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Create a new UserGroups
+     * This API allows to create a new UserGroups.
+     * @param userGroup UserGroup list to be added. (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public void usersGroupsPost(List<UserGroup> userGroup) throws ApiException {
+        usersGroupsPostWithHttpInfo(userGroup);
+    }
+
+    /**
+     * Create a new UserGroups
+     * This API allows to create a new UserGroups.
+     * @param userGroup UserGroup list to be added. (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> usersGroupsPostWithHttpInfo(List<UserGroup> userGroup) throws ApiException {
+        okhttp3.Call localVarCall = usersGroupsPostValidateBeforeCall(userGroup, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Create a new UserGroups (asynchronously)
+     * This API allows to create a new UserGroups.
+     * @param userGroup UserGroup list to be added. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> The request has been satisfyied. No output. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersGroupsPostAsync(List<UserGroup> userGroup, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = usersGroupsPostValidateBeforeCall(userGroup, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for usersPost
+     * @param createUserRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The request has been satisfyied, new resource created. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersPostCall(CreateUserRequest createUserRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = createUserRequest;
+
+        // create path and map variables
+        String localVarPath = "/users";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "*/*"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call usersPostValidateBeforeCall(CreateUserRequest createUserRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'createUserRequest' is set
+        if (createUserRequest == null) {
+            throw new ApiException("Missing the required parameter 'createUserRequest' when calling usersPost(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = usersPostCall(createUserRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Create a new User
+     * This API allows to create a new User.
+     * @param createUserRequest  (required)
+     * @return UUID
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The request has been satisfyied, new resource created. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public UUID usersPost(CreateUserRequest createUserRequest) throws ApiException {
+        ApiResponse<UUID> localVarResp = usersPostWithHttpInfo(createUserRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create a new User
+     * This API allows to create a new User.
+     * @param createUserRequest  (required)
+     * @return ApiResponse&lt;UUID&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The request has been satisfyied, new resource created. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<UUID> usersPostWithHttpInfo(CreateUserRequest createUserRequest) throws ApiException {
+        okhttp3.Call localVarCall = usersPostValidateBeforeCall(createUserRequest, null);
+        Type localVarReturnType = new TypeToken<UUID>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create a new User (asynchronously)
+     * This API allows to create a new User.
+     * @param createUserRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The request has been satisfyied, new resource created. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Result of a client passing incorrect or invalid data. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User authentication was not effective (e.g. not provided, invalid or expired). </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> User is not allowed to perform the request. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal failure of the service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersPostAsync(CreateUserRequest createUserRequest, final ApiCallback<UUID> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = usersPostValidateBeforeCall(createUserRequest, _callback);
+        Type localVarReturnType = new TypeToken<UUID>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

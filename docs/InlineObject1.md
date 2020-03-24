@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | **String** | This is the actual reason why the Digital Signature Transaction is going to be canceled, to be provided in the body of the request  |  [optional]
+**text** | **String** | This is the actual content of the _DSTNote_ |  [optional]
 
 
 

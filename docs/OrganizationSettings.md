@@ -6,9 +6,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**defaultRao** | **String** | This is the default *RAO* user of the Organization. A rao user is the one can associate identities to the other users  |  [optional]
-**dstDefaultMonths** | **Integer** | This is the default deadline before the expiration of a digital signature transaction |  [optional]
-**signatureAppearance** | **String** | This is the url to the default signature appearance will be used for every member of the organization. In the scenario of a user that owns an identity with a signature_appearance will be uset the image associated to the identity rather than the default one  |  [optional]
+**defaultDSTExpireDays** | **Integer** |  |  [optional]
+**defaultLanguage** | [**DefaultLanguageEnum**](#DefaultLanguageEnum) |  |  [optional]
+**alfrescoProperties** | [**OrganizationSettingsAlfrescoProperties**](OrganizationSettingsAlfrescoProperties.md) |  |  [optional]
+
+
+
+## Enum: DefaultLanguageEnum
+
+Name | Value
+---- | -----
+IT | &quot;it&quot;
+EN | &quot;en&quot;
+ES | &quot;es&quot;
+FR | &quot;fr&quot;
 
 
 
