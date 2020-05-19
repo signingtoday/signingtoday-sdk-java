@@ -28,7 +28,7 @@ import java.io.IOException;
  * Where will be allocated the Signature on the document. This field is made of two parameters, defined as follows 
  */
 @ApiModel(description = "Where will be allocated the Signature on the document. This field is made of two parameters, defined as follows ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class SignatureDSTWhere {
   public static final String SERIALIZED_NAME_PAGE = "page";
   @SerializedName(SERIALIZED_NAME_PAGE)

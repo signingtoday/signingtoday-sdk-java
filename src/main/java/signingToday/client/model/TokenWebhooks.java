@@ -28,7 +28,7 @@ import java.io.IOException;
  * SigningToday supports webhooks for the update of digital signature transactions and identities status. You can choose if to use or not webhooks and if you want to receive updates about digital signature transactions and/or identities. You can configurate it on application token level, in the _webhook field_ 
  */
 @ApiModel(description = "SigningToday supports webhooks for the update of digital signature transactions and identities status. You can choose if to use or not webhooks and if you want to receive updates about digital signature transactions and/or identities. You can configurate it on application token level, in the _webhook field_ ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class TokenWebhooks {
   public static final String SERIALIZED_NAME_IDENTITY = "identity";
   @SerializedName(SERIALIZED_NAME_IDENTITY)

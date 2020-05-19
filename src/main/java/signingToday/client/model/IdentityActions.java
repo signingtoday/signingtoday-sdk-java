@@ -28,7 +28,7 @@ import java.io.IOException;
  * The object that identifies the urls to sign, to send a one time password or to update the certificate
  */
 @ApiModel(description = "The object that identifies the urls to sign, to send a one time password or to update the certificate")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class IdentityActions {
   public static final String SERIALIZED_NAME_SEND_OTP = "send_otp";
   @SerializedName(SERIALIZED_NAME_SEND_OTP)

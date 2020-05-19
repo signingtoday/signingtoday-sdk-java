@@ -28,7 +28,7 @@ import java.io.IOException;
  * The Pagination is an object that helps to serialize response content in terms of number and pages of elements. This way is possible to easily manipulate through big amount of data
  */
 @ApiModel(description = "The Pagination is an object that helps to serialize response content in terms of number and pages of elements. This way is possible to easily manipulate through big amount of data")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class PaginationData {
   public static final String SERIALIZED_NAME_COUNT = "count";
   @SerializedName(SERIALIZED_NAME_COUNT)

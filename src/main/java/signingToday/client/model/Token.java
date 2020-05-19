@@ -31,7 +31,7 @@ import signingToday.client.model.TokenWebhooks;
  * The Token is an object that contains the information about the authorizations, thanks to which is possible to setup the authorization to use in every HTTP request or the authorization to send the webhook notifications either the authorization for the fetching of documents. 
  */
 @ApiModel(description = "The Token is an object that contains the information about the authorizations, thanks to which is possible to setup the authorization to use in every HTTP request or the authorization to send the webhook notifications either the authorization for the fetching of documents. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class Token {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

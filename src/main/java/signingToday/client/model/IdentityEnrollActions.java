@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * IdentityEnrollActions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class IdentityEnrollActions {
   public static final String SERIALIZED_NAME_SEND_OTP = "send_otp";
   @SerializedName(SERIALIZED_NAME_SEND_OTP)

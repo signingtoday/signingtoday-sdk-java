@@ -28,7 +28,7 @@ import signingToday.client.model.SignatureAppearanceUri;
 /**
  * InlineObject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class InlineObject {
   public static final String SERIALIZED_NAME_SIGNATURE_APPEARANCE_URI = "signature_appearance_uri";
   @SerializedName(SERIALIZED_NAME_SIGNATURE_APPEARANCE_URI)

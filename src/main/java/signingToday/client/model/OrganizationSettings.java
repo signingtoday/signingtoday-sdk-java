@@ -28,7 +28,7 @@ import java.io.IOException;
  * Default settings it is possible to setup for the Organization
  */
 @ApiModel(description = "Default settings it is possible to setup for the Organization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class OrganizationSettings {
   public static final String SERIALIZED_NAME_DEFAULT_RAO = "default_rao";
   @SerializedName(SERIALIZED_NAME_DEFAULT_RAO)

@@ -28,7 +28,7 @@ import java.io.IOException;
  * Through this field it is possible to add some custom options to the HTTP request
  */
 @ApiModel(description = "Through this field it is possible to add some custom options to the HTTP request")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class TokenHttpOptions {
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)

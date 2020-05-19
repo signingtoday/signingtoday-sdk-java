@@ -32,7 +32,7 @@ import signingToday.client.model.Identity;
  * The User object is one of the components of the organization, which can sign digital signature transactions through one of the identities it got in the its wallet. Some of the most specific fields of this object are _\&quot;automatic\&quot;_, _\&quot;rao\&quot;_ and _\&quot;owner\&quot;_. They are boolean values. The first one indicates if the User can sign dsts into an automatic way, without passing through the signature tray. The rao field allows the User to enroll identities for the users of its organization. At last the owner field means that the token associated to the organization belongs to it and thus this particular User has administrative permissions. 
  */
 @ApiModel(description = "The User object is one of the components of the organization, which can sign digital signature transactions through one of the identities it got in the its wallet. Some of the most specific fields of this object are _\"automatic\"_, _\"rao\"_ and _\"owner\"_. They are boolean values. The first one indicates if the User can sign dsts into an automatic way, without passing through the signature tray. The rao field allows the User to enroll identities for the users of its organization. At last the owner field means that the token associated to the organization belongs to it and thus this particular User has administrative permissions. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T08:35:42.543Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-24T09:30:59.492Z[GMT]")
 public class User {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
